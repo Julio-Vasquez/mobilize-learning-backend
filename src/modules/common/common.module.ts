@@ -1,5 +1,6 @@
 import { Module, Global } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { OrmConfigService } from './orm/orm.service';
 
 import app from './env/env.config';
 
@@ -12,7 +13,7 @@ import app from './env/env.config';
       isGlobal: true,
     }),
   ],
-  providers: [],
-  exports: [],
+  providers: [OrmConfigService],
+  exports: [OrmConfigService],
 })
 export class CommonModule {}
