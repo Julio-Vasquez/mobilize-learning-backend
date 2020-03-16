@@ -10,4 +10,16 @@ export class AuthService {
     @InjectRepository(User)
     private readonly repository: Repository<User>,
   ) {}
+
+  public async Login() {
+    return '';
+  }
+
+  public async SignUp() {
+    return '';
+  }
+
+  public async RestorePassword() {
+    return '';
+  }
 }
