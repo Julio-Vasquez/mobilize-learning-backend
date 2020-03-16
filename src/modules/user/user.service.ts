@@ -10,4 +10,12 @@ export class UserService {
     @InjectRepository(User)
     private readonly repository: Repository<User>,
   ) {}
+
+  public async MyProfile() {
+    return '';
+  }
+
+  public async Account() {
+    return '';
+  }
 }
