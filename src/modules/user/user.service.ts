@@ -18,4 +18,12 @@ export class UserService {
   public async Account() {
     return '';
   }
+
+  public async ValidUserToken(userName: string) {
+    return '';
+  }
+
+  public async ValidUser(userName: string, password: string) {
+    return '';
+  }
 }
