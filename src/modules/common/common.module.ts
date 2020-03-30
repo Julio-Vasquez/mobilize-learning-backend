@@ -1,6 +1,7 @@
 import { Module, Global } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { OrmConfigService } from './orm/orm.service';
+import { MongooseConfigService } from './mongoose/mongoose.service';
+import { Response } from './response';
 
 import app from './env/env.config';
 
@@ -13,7 +14,7 @@ import app from './env/env.config';
       isGlobal: true,
     }),
   ],
-  providers: [OrmConfigService],
-  exports: [OrmConfigService],
+  providers: [MongooseConfigService, Response],
+  exports: [MongooseConfigService, Response],
 })
 export class CommonModule {}

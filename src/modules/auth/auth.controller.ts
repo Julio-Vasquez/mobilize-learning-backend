@@ -1,13 +1,22 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { Response } from './../common/response';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly service: AuthService) {}
+  constructor(
+    private readonly service: AuthService,
+    private readonly Response: Response,
+  ) {}
 
   @Post('login')
   public async Login() {
-    return '';
+    /*const login = await this.service.ValidUser('', '');
+     */
+    const login = await this.service.Login();
+    return this.Response.status({ state: HttpStatus.OK, detail: 'OK' })
+      .message('OK')
+      .payload(login);
   }
 
   @Post('signup')

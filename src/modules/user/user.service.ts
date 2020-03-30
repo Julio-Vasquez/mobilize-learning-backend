@@ -1,29 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
-import { User } from './../../entities/user.entity';
+import { User } from '../../schemas/user.entity';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User)
-    private readonly repository: Repository<User>,
-  ) {}
+  constructor() {}
 
   public async MyProfile() {
     return '';
   }
 
-  public async Account() {
-    return '';
+  public async Account(userName: string) {
+    const res = await this.repository.findOneOrFail({ username: userName });
+    console.log(res);
+    return res ? res : undefined;
   }
 
-  public async ValidUserToken(userName: string) {
-    return '';
+  public async ValidUserToken(userName: string): Promise<boolean> {
+    const res = await this.repository.findOne({
+      where: { username: userName },
+    });
+    return res ? true : false;
   }
 
   public async ValidUser(userName: string, password: string) {
-    return '';
+    const user = await this.repository.findOne({
+      where: { username: userName },
+    });
+    console.log(`check => ${user}`);
+    console.log(user && (await user.comparePassword(password)) ? true : false);
+    return user && (await user.comparePassword(password)) ? true : false;
   }
 }

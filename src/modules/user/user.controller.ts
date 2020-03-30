@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -10,8 +10,11 @@ export class UserController {
     return '';
   }
 
-  @Get('account')
-  public async Account() {
+  @Get('account/:username')
+  public async Account(@Param('username') username: string) {
+    console.log(username);
+    const res = await this.service.Account(username);
+    console.log(res);
     return '';
   }
 

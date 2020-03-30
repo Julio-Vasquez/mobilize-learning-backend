@@ -1,15 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import {
+  MongooseOptionsFactory,
+  MongooseModuleOptions,
+} from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 
-import { User } from './../../../entities/user.entity';
-import { People } from './../../../entities/people.entity';
+import { User } from '../../../entities/user.entity';
+import { People } from '../../../entities/people.entity';
 
 @Injectable()
-export class OrmConfigService implements TypeOrmOptionsFactory {
+export class MongooseConfigService implements MongooseOptionsFactory {
   constructor(private readonly config: ConfigService) {}
 
-  async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
+  async createMongooseOptions(): Promise<MongooseModuleOptions> {
+    //falta cambiarlo
     return {
       type: 'mongodb',
       host: this.config.get<string>('app.db_Host'),
