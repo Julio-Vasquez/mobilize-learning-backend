@@ -1,11 +1,11 @@
-//import { hash, compareSync } from 'bcryptjs';
 import { Schema, Types } from 'mongoose';
 
 export const UserSchema = new Schema({
-  id: Types.ObjectId,
-  username: String,
-  password: String,
-  email: String,
+  id: { required: true, type: Types.ObjectId, unique: true },
+  userName: { required: true, type: String, maxlength: 45 },
+  password: { required: true, type: String },
+  avatar: { required: true, type: String },
+  email: { required: true, type: String },
   state: {
     required: true,
     type: String,
@@ -13,13 +13,3 @@ export const UserSchema = new Schema({
   },
   people: { type: Types.ObjectId, ref: 'People' },
 });
-
-/*
-public async hashPassword() {
-    this.password = await hash(this.password, 10);
-  }
-
-  public async comparePassword(attempt: string): Promise<boolean> {
-    return await compareSync(attempt, this.password);
-  }
-*/

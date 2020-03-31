@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from './../user/user.service';
+import { hash } from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
@@ -10,23 +11,7 @@ export class AuthService {
   }
 
   public async SignUp() {
-    /*await this.t.save({
-      identification: 1117542316,
-      name: 'Julio',
-      lastName: 'Vásquez',
-      gender: Genders.Man,
-      birthDate: '22-02-1996',
-      typeDoc: TypeDocs.CC,
-      state: State.Active,
-    });
-    const _id = await this.t.findOne({ where: { name: 'Julio' } });
-    await this.repository.save({
-      username: 'DarKPhuRioN',
-      password: 'phurion123',
-      email: 'jualvali@live.com',
-      state: State.Active,
-      people: _id.id,
-    });*/
+    return '';
   }
 
   public async RestorePassword() {
@@ -40,5 +25,9 @@ export class AuthService {
 
   public async ValidUser(userName: string, password: string) {
     return this.userService.ValidUser(userName, password);
+  }
+
+  private async HashPassword(pwd: string) {
+    return await hash(pwd, 10);
   }
 }

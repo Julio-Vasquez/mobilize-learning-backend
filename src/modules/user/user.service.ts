@@ -1,35 +1,46 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { compareSync } from 'bcryptjs';
 
-import { UserSchema } from '../../schemas/user.schema';
+import { UserInterface } from './interface/user.interface';
+import { PeopleInterface } from './interface/people.interface';
 
 @Injectable()
 export class UserService {
-  constructor() {}
+  constructor(
+    @InjectModel('User')
+    private readonly UserModel: Model<UserInterface>,
+    @InjectModel('People')
+    private readonly PeopleModel: Model<PeopleInterface>,
+  ) {}
 
-  public async MyProfile() {
-    return '';
+  public async MyProfile(userName: string): Promise<PeopleInterface> {
+    return new this.PeopleModel();
   }
 
   public async Account(userName: string) {
-    const res = false; //await this.repository.findOneOrFail({ username: userName });
-    console.log(res);
+    const res = false;
     return res ? res : undefined;
   }
 
   public async ValidUserToken(userName: string): Promise<boolean> {
-    const res = false; /* await this.repository.findOne({
-      where: { username: userName },
-    });*/
-    return res ? true : false;
+    const result = await this.UserModel.findOne({ userName: userName }).exec();
+    return result ? true : false;
   }
 
   public async ValidUser(userName: string, password: string) {
-    /*const user = await this.repository.findOne({
-      where: { username: userName },
-    });
+    const user = await this.UserModel.findOne({ userName: userName }).exec();
     console.log(`check => ${user}`);
-    console.log(user && (await user.comparePassword(password)) ? true : false);
-    return user && (await user.comparePassword(password)) ? true : false;*/
-    return true;
+    console.log(
+      (await this.comparePassword(password, user.password)) ? true : false,
+    );
+    return user && (await this.comparePassword(password, user.password))
+      ? true
+      : false;
+  }
+
+  private async comparePassword(attempt: string, currentPassword: string) {
+    return await compareSync(attempt, currentPassword);
   }
 }
