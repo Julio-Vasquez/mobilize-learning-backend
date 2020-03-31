@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -19,7 +19,8 @@ export class UserController {
   }
 
   @Get()
-  public holaMundo() {
-    return '<h1>Hola mundo desde el backend, dice User</h1>';
+  public async holaMundo(@Res() res) {
+    res.send(await this.service.MyProfile('DarKPhuRioN'));
+    // await this.service.MyProfile('DarKPhuRioN');
   }
 }

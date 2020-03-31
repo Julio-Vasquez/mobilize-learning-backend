@@ -18,6 +18,7 @@ export class MongooseConfigService implements MongooseOptionsFactory {
     return {
       uri: `${TYPE}://${HOST}:${PORT}/${DB}`,
       useNewUrlParser: true,
+      useCreateIndex: true,
     };
   }
 }

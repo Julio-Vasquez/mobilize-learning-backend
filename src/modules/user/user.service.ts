@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { compareSync } from 'bcryptjs';
 
 import { UserInterface } from './interface/user.interface';
@@ -16,11 +16,19 @@ export class UserService {
   ) {}
 
   public async MyProfile(userName: string): Promise<PeopleInterface> {
-    return new this.PeopleModel();
+    const _idPeople: UserInterface = await this.UserModel.findOne(
+      { userName: userName },
+      { people: 1, _id: 0 },
+    ).exec();
+    const result: PeopleInterface = await this.PeopleModel.findOne(
+      { id: _idPeople.people },
+      { __v: 0 },
+    ).exec();
+    return result ? result : undefined;
   }
 
-  public async Account(userName: string) {
-    const res = false;
+  public async Account(userName: string): Promise<UserInterface> {
+    const res = await this.UserModel.findOne({ userName: userName }).exec();
     return res ? res : undefined;
   }
 

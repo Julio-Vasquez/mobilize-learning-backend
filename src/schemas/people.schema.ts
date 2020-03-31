@@ -1,8 +1,8 @@
 import { Schema, Types } from 'mongoose';
 
 export const PeopleSchema = new Schema({
-  id: { required: false, type: Types.ObjectId },
-  identification: { required: true, type: Number, unique: true },
+  _id: { required: false, type: Types.ObjectId },
+  identification: { required: true, type: Number, unique: true, index: true },
   name: { required: true, type: String },
   lastName: { required: true, type: String },
   gender: {
