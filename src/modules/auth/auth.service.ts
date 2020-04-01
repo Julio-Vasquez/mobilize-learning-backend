@@ -18,7 +18,7 @@ export class AuthService {
     return '';
   }
 
-  public async ValidUserToken(token): Promise<boolean> {
+  public async ValidUserToken(token: any): Promise<boolean> {
     if (!token) return false;
     return await this.userService.ValidUserToken(token);
   }
