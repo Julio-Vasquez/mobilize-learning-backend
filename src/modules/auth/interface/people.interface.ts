@@ -5,7 +5,7 @@ import { TypeDocs } from './../../common/enums/typedoc.enum';
 import { State } from './../../common/enums/state.enum';
 
 export interface PeopleInterface extends Document {
-  readonly id: string;
+  readonly _id: string;
   readonly identification: number;
   readonly name: string;
   readonly lastName: string;

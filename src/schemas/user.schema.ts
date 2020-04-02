@@ -1,8 +1,14 @@
-import { Schema, Types } from 'mongoose';
+import { Schema } from 'mongoose';
 
 export const UserSchema = new Schema({
-  _id: { required: false, type: Types.ObjectId, unique: true },
-  userName: { required: true, type: String, maxlength: 45 },
+  _id: { required: false, type: Schema.Types.ObjectId },
+  userName: {
+    required: true,
+    type: String,
+    maxlength: 45,
+    unique: true,
+    index: true,
+  },
   password: { required: true, type: String },
   avatar: { required: true, type: String },
   email: { required: true, type: String },
@@ -17,5 +23,5 @@ export const UserSchema = new Schema({
     enum: ['Activo', 'Inactivo'],
     default: 'Activo',
   },
-  people: { type: Types.ObjectId, ref: 'People' },
+  people: { type: Schema.Types.ObjectId, ref: 'People' },
 });

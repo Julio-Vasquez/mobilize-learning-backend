@@ -1,7 +1,7 @@
-import { Schema, Types } from 'mongoose';
+import { Schema } from 'mongoose';
 
 export const PeopleSchema = new Schema({
-  _id: { required: false, type: Types.ObjectId },
+  _id: { required: false, type: Schema.Types.ObjectId },
   identification: { required: true, type: Number, unique: true, index: true },
   name: { required: true, type: String },
   lastName: { required: true, type: String },

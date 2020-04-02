@@ -29,22 +29,14 @@ export class SignUpDto {
 
   @IsNotEmpty({ message: IsNE })
   @IsString({ message: IsStr })
-  @MinLength(3, {
-    message: `El Nombre ${MinL(3)}`,
-  })
-  @MaxLength(45, {
-    message: `El Nombre ${MaxL(45)}`,
-  })
+  @MinLength(3, { message: `El Nombre ${MinL(3)}` })
+  @MaxLength(45, { message: `El Nombre ${MaxL(45)}` })
   public readonly name: string;
 
   @IsNotEmpty({ message: IsNE })
   @IsString({ message: IsStr })
-  @MinLength(3, {
-    message: `El Apellido ${MinL(3)}`,
-  })
-  @MaxLength(45, {
-    message: `El Apellido ${MaxL(45)}`,
-  })
+  @MinLength(3, { message: `El Apellido ${MinL(3)}` })
+  @MaxLength(45, { message: `El Apellido ${MaxL(45)}` })
   public readonly lastName: string;
 
   @IsNotEmpty({ message: IsNE })
@@ -63,22 +55,14 @@ export class SignUpDto {
 
   @IsNotEmpty({ message: IsNE })
   @IsString({ message: IsStr })
-  @MinLength(4, {
-    message: `El usuario ${MinL(4)}`,
-  })
-  @MaxLength(45, {
-    message: `El usuario ${MaxL(45)}`,
-  })
+  @MinLength(4, { message: `El usuario ${MinL(4)}` })
+  @MaxLength(45, { message: `El usuario ${MaxL(45)}` })
   public readonly userName: string;
 
   @IsNotEmpty({ message: IsNE })
   @IsString({ message: IsStr })
-  @MinLength(4, {
-    message: `La contraseña ${MinL(4)}`,
-  })
-  @MaxLength(60, {
-    message: `La contraseña ${MaxL(45)}`,
-  })
+  @MinLength(4, { message: `La contraseña ${MinL(4)}` })
+  @MaxLength(60, { message: `La contraseña ${MaxL(45)}` })
   public readonly password: string;
 
   @IsNotEmpty({ message: IsNE })

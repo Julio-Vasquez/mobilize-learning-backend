@@ -1,22 +1,32 @@
-import { Controller, Get, Post, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, HttpStatus, Body } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+
 import { AuthService } from './auth.service';
+
 import { Response } from './../common/response';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly service: AuthService,
     private readonly Response: Response,
+    private readonly jwtService: JwtService,
   ) {}
 
   @Post('login')
-  public async Login() {
-    /*const login = await this.service.ValidUser('', '');
-     */
-    const login = await this.service.Login();
-    return this.Response.status({ state: HttpStatus.OK, detail: 'OK' })
-      .message('OK')
-      .payload(login);
+  public async Login(@Body() login: LoginDto) {
+    const res = await this.service.Login(login);
+    if (!res) {
+      return this.Response.status({
+        StatusCode: HttpStatus.NO_CONTENT,
+        Status: 'NO_CONTENT',
+      }).payload();
+    } else {
+      return this.Response.status({ StatusCode: HttpStatus.OK })
+        .message('OK')
+        .payload(this.jwtService.sign(res));
+    }
   }
 
   @Post('signup')
