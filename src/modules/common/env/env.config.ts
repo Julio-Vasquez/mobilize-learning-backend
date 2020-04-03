@@ -12,4 +12,7 @@ export default registerAs('app', () => ({
   db_Host: process.env.DB_HOST,
   db_Database: process.env.DB_DATABASE,
   db_Port: process.env.DB_PORT,
+  email: process.env.EMAIL,
+  pwd: process.env.PASSWORD,
+  company: process.env.COMPANY,
 }));

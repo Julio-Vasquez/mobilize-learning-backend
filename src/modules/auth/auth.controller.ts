@@ -34,9 +34,9 @@ export class AuthController {
     return '';
   }
 
-  @Post('restorepassword')
+  @Get('restorepassword')
   public async RestorePassword() {
-    return '';
+    return await this.service.RestorePassword();
   }
 
   @Get()

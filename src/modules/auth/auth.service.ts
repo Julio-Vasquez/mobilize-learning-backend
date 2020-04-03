@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ConfigService } from '@nestjs/config';
 import { Model } from 'mongoose';
+
 import { HashPassword, ComparePassword } from './../common/bcrypt/bcrypt';
+import { Mail } from './../common/mail';
 
 import { UserService } from './../user/user.service';
 
@@ -18,6 +21,7 @@ export class AuthService {
     @InjectModel('People')
     private readonly PeopleModel: Model<PeopleInterface>,
     private readonly userService: UserService,
+    private readonly mail: Mail,
   ) {}
 
   public async Login(login: LoginDto): Promise<any> {
@@ -42,7 +46,11 @@ export class AuthService {
   }
 
   public async RestorePassword() {
-    return '';
+    return this.mail.SendSingleEMailHtml(
+      'jualvalitube@gmail.com',
+      'Reset Password',
+      '',
+    );
   }
 
   public async ValidUserToken(token: any): Promise<boolean> {
