@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { UserInterface } from './interface/user.interface';
-import { PeopleInterface } from './interface/people.interface';
+import { IUser } from './interface/user.interface';
+import { IPeople } from './interface/people.interface';
 
 import { AccountDto } from './dto/account.dto';
 
@@ -13,24 +13,24 @@ import { ComparePassword } from './../common/bcrypt/bcrypt';
 export class UserService {
   constructor(
     @InjectModel('User')
-    private readonly UserModel: Model<UserInterface>,
+    private readonly UserModel: Model<IUser>,
     @InjectModel('People')
-    private readonly PeopleModel: Model<PeopleInterface>,
+    private readonly PeopleModel: Model<IPeople>,
   ) {}
 
-  public async MyProfile(account: AccountDto): Promise<PeopleInterface> {
-    const _idPeople: UserInterface = await this.UserModel.findOne(
+  public async MyProfile(account: AccountDto): Promise<IPeople> {
+    const _idPeople: IUser = await this.UserModel.findOne(
       { userName: account.userName },
       { people: 1, _id: 0, __v: 0 },
     ).exec();
-    const result: PeopleInterface = await this.PeopleModel.findOne(
+    const result: IPeople = await this.PeopleModel.findOne(
       { id: _idPeople.people },
       { __v: 0 },
     ).exec();
     return result ? result : undefined;
   }
 
-  public async Account(account: AccountDto): Promise<UserInterface> {
+  public async Account(account: AccountDto): Promise<IUser> {
     const res = await this.UserModel.findOne({
       userName: account.userName,
     }).exec();
