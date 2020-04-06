@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
@@ -11,6 +11,7 @@ import { UserService } from './../user/user.service';
 import { LoginDto } from './dto/login.dto';
 import { UserDto } from './dto/user.dto';
 import { ResetPasswordDto } from './dto/resetpassword.dto';
+import { SignUpDto } from './dto/signup.dto';
 
 import { IUser } from './interface/user.interface';
 import { IPeople } from './interface/people.interface';
@@ -34,6 +35,7 @@ export class AuthService {
       },
       { _id: 0, email: 0, people: 0, __v: 0 },
     ).exec();
+
     return user && (await ComparePassword(login.password, user.password))
       ? {
           userName: user.userName,
@@ -44,8 +46,14 @@ export class AuthService {
       : null;
   }
 
-  public async SignUp() {
-    return '';
+  public async SignUp(@Body() account: SignUpDto) {
+    //register People
+    const people = new this.PeopleModel(account);
+    people.save();
+
+    const user = new this.UserModel(account);
+    user.save();
+    return true;
   }
 
   //falta acomodar la url
@@ -53,11 +61,13 @@ export class AuthService {
     const { _id, userName, password, email } = await this.UserModel.findOne({
       userName: user.userName,
     }).exec();
+
     const token = this.jwt.sign({
       ID: _id,
       OldPassword: password,
       User: userName,
     });
+
     return this.mail.SendSingleEMailHtml(
       email,
       'Reset Password',
