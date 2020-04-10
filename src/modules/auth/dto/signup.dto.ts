@@ -16,10 +16,10 @@ import {
   MaxL,
   IsNb,
   IsDt,
-} from './../../common/const/messages.const';
+} from '../../@common/const/messages.const';
 
-import { Genders } from './../../common/enums/gender.enum';
-import { TypeDocs } from './../../common/enums/typedoc.enum';
+import { Genders } from '../../@common/enums/gender.enum';
+import { TypeDocs } from '../../@common/enums/typedoc.enum';
 
 export class SignUpDto {
   @IsNotEmpty({ message: IsNE })

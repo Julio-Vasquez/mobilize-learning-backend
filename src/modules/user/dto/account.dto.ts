@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, MinLength, MaxLength } from 'class-validator';
 
-import { IsNE, IsStr, MinL, MaxL } from './../../common/const/messages.const';
+import { IsNE, IsStr, MinL, MaxL } from '../../@common/const/messages.const';
 
 export class AccountDto {
   @IsNotEmpty({ message: IsNE })

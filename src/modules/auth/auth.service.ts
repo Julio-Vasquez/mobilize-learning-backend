@@ -3,8 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 
-import { HashPassword, ComparePassword } from './../common/bcrypt/bcrypt';
-import { Mail } from './../common/mail';
+import { HashPassword, ComparePassword } from '../@common/bcrypt/bcrypt';
+import { Mail } from '../@common/mail';
 
 import { UserService } from './../user/user.service';
 

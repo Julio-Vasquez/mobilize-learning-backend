@@ -7,7 +7,7 @@ import { IPeople } from './interface/people.interface';
 
 import { AccountDto } from './dto/account.dto';
 
-import { ComparePassword } from './../common/bcrypt/bcrypt';
+import { ComparePassword } from '../@common/bcrypt/bcrypt';
 
 @Injectable()
 export class UserService {

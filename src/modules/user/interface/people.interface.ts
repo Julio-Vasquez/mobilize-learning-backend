@@ -1,8 +1,8 @@
 import { Document } from 'mongoose';
 
-import { Genders } from './../../common/enums/gender.enum';
-import { TypeDocs } from './../../common/enums/typedoc.enum';
-import { State } from './../../common/enums/state.enum';
+import { Genders } from '../../@common/enums/gender.enum';
+import { TypeDocs } from '../../@common/enums/typedoc.enum';
+import { State } from '../../@common/enums/state.enum';
 
 export interface IPeople extends Document {
   readonly _id: string;

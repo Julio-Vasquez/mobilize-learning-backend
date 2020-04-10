@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, MinLength, MaxLength } from 'class-validator';
-import { IsStr, IsNE, MinL, MaxL } from './../../common/const/messages.const';
+import { IsStr, IsNE, MinL, MaxL } from '../../@common/const/messages.const';
 
 export class LoginDto {
   @IsNotEmpty({ message: IsNE })
