@@ -15,6 +15,7 @@ import { SignUpDto } from './dto/signup.dto';
 
 import { IUser } from './interface/user.interface';
 import { IPeople } from './interface/people.interface';
+import { State } from '../@common/enums/state.enum';
 
 @Injectable()
 export class AuthService {
@@ -36,13 +37,12 @@ export class AuthService {
       { _id: 0, email: 0, people: 0, __v: 0 },
     ).exec();
 
+    if (user.state !== State.Active)
+      return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
+    else if (!user)
+      return { error: 'NOT_EXIST_USER', detail: 'No existe el Usuario' };
     return user && (await ComparePassword(login.password, user.password))
-      ? {
-          userName: user.userName,
-          avatar: user.avatar,
-          role: user.role,
-          state: user.state,
-        }
+      ? user
       : null;
   }
 

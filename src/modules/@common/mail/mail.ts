@@ -1,5 +1,5 @@
 import { ConfigMail } from './config';
-import { ResetPasswordMail } from './resetpassword';
+import { ResetPasswordMail } from './template';
 
 export class Mail {
   config: ConfigMail;

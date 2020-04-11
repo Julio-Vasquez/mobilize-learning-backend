@@ -28,7 +28,7 @@ export class AuthController {
     } else {
       return this.Response.status({ StatusCode: HttpStatus.OK })
         .message('OK')
-        .payload(this.jwtService.sign(res));
+        .payload(this.jwtService.sign({ ...res._doc }));
     }
   }
 
