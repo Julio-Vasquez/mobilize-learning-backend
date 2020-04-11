@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res } from '@nestjs/common';
+import { Controller, Post, Body, HttpStatus } from '@nestjs/common';
 
 import { UserService } from './user.service';
 import { AccountDto } from './dto/account.dto';
@@ -7,19 +7,21 @@ import { AccountDto } from './dto/account.dto';
 export class UserController {
   constructor(private readonly service: UserService) {}
 
-  @Get('profile/:username')
-  public async MyProfile(@Param('username') account: AccountDto) {
-    console.log(account.userName);
-    const res = await this.service.MyProfile(account);
-    console.log(res);
-    return '';
+  @Post('profile')
+  public async MyProfile(@Body() account: AccountDto) {
+    const response: any = await this.service.MyProfile(account);
+    if (response.error) {
+      return { ...response, status: HttpStatus.NO_CONTENT };
+    }
+    return { success: 'OK', payload: response };
   }
 
-  @Get('account/:username')
-  public async Account(@Param('username') account: AccountDto) {
-    console.log(account.userName);
-    const res = await this.service.Account(account);
-    console.log(res);
-    return '';
+  @Post('account')
+  public async Account(@Body() account: AccountDto) {
+    const response: any = await this.service.Account(account);
+    if (response.error) {
+      return { ...response, status: HttpStatus.NO_CONTENT };
+    }
+    return { success: 'OK', payload: response };
   }
 }
