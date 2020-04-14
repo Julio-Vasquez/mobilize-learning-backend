@@ -9,6 +9,7 @@ export interface IUser extends Document {
   readonly password: string;
   readonly avatar: string;
   readonly email: string;
+  readonly code: string;
   readonly role: Role;
   readonly state: State;
   readonly people: string;

@@ -2,6 +2,7 @@ import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
+import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 
 import { HashPassword, ComparePassword } from '../@common/bcrypt/bcrypt';
 import { Mail } from '../@common/mail';
@@ -48,6 +49,8 @@ export class AuthService {
 
   public async SignUp(@Body() account: SignUpDto) {
     //register People
+    //falta transacion,
+    //falta el uso del codigo
     const people = new this.PeopleModel(account);
     people.save();
 
@@ -56,41 +59,95 @@ export class AuthService {
     return true;
   }
 
-  //falta acomodar la url
-  public async RestorePassword(user: UserDto) {
-    const { _id, userName, password, email } = await this.UserModel.findOne({
+  //falta acomodar la url y el code
+  public async RequestForgotPassword(user: UserDto) {
+    const account = await this.UserModel.findOne({
       userName: user.userName,
     }).exec();
 
-    const token = this.jwt.sign({
-      ID: _id,
-      OldPassword: password,
-      User: userName,
-    });
+    if (!account) {
+      return { error: 'NOT_EXIST_USER', detail: 'No existe el Usuario' };
+    } else if (account.state !== State.Active) {
+      return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
+    }
+    const privateCode = randomStringGenerator();
 
-    return this.mail.SendSingleEMailHtml(
-      email,
+    await this.UserModel.updateOne(
+      { userName: user.userName },
+      { code: privateCode },
+    ).exec();
+    //token expire in 25minutes
+    const token = this.jwt.sign(
+      {
+        ID: account._id,
+        OldPassword: account.password,
+        User: account.userName,
+        Code: privateCode,
+      },
+      { expiresIn: 1500 },
+    );
+
+    const mail = await this.mail.SendSingleEMailHtml(
+      account.email,
       'Reset Password',
       `url/${token}`,
     );
+
+    return !mail
+      ? {
+          error: 'ERROR_SEND_EMAIL',
+          detail: 'Ocurrio un problema al enviar el email',
+        }
+      : { sucess: 'OK' };
   }
 
-  //falta testear
-  public async ResetPassword(restore: ResetPasswordDto) {
+  public async ForgotPassword(restore: ResetPasswordDto) {
     const token: any = this.jwt.decode(restore.token);
-    if (token) {
-      const result = await this.UserModel.updateOne(
-        {
-          _id: token.ID,
-          password: token.OldPassword,
-          userName: token.User,
-        },
-        {
-          password: HashPassword(restore.newPassword),
-        },
-      ).exec();
-      return result ? true : false;
-    } else return false;
+
+    if (!token)
+      return {
+        error: 'INVALID_TOKEN',
+        detail: 'Token invalido, o no encontrado',
+      };
+    else if (token.exp <= Math.round(new Date().getTime() / 1000))
+      return { error: 'TOKEN_EXPIRED', detaul: 'token expirado' };
+
+    const currentUser = await this.UserModel.findOne({
+      _id: token.ID,
+      password: token.OldPassword,
+      userName: token.User,
+      code: token.Code,
+    }).exec();
+
+    if (!currentUser)
+      return {
+        error: 'NO_EXIST_USER',
+        detail: 'No existe usuario con esas credenciales ',
+      };
+    else if (currentUser.state !== State.Active)
+      return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
+
+    const privateCode = randomStringGenerator();
+
+    const result = await this.UserModel.updateOne(
+      {
+        _id: token.ID,
+        password: token.OldPassword,
+        userName: token.User,
+        code: token.Code,
+      },
+      {
+        password: await HashPassword(restore.newPassword),
+        code: privateCode,
+      },
+    ).exec();
+
+    return result.nModified > 0
+      ? { sucess: 'OK' }
+      : {
+          error: 'NO_UPDATE',
+          detail: 'Datos iguales',
+        };
   }
 
   public async ValidUserToken(token: any): Promise<boolean> {

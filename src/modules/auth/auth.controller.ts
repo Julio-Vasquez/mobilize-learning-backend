@@ -1,4 +1,12 @@
-import { Controller, Get, Post, HttpStatus, Body, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  HttpStatus,
+  Body,
+  Put,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { AuthService } from './auth.service';
@@ -20,16 +28,8 @@ export class AuthController {
   @Post('login')
   public async Login(@Body() login: LoginDto) {
     const res = await this.service.Login(login);
-    if (!res) {
-      return this.Response.status({
-        StatusCode: HttpStatus.NO_CONTENT,
-        Status: 'NO_CONTENT',
-      }).payload();
-    } else {
-      return this.Response.status({ StatusCode: HttpStatus.OK })
-        .message('OK')
-        .payload(this.jwtService.sign({ ...res._doc }));
-    }
+    if (res.error) throw new UnauthorizedException(res);
+    return { sucess: 'OK', payload: this.jwtService.sign({ ...res._doc }) };
   }
 
   @Post('signup')
@@ -38,35 +38,19 @@ export class AuthController {
   }
 
   //genera el token y envia el email
-  @Post('restorepassword')
+  @Post('request-forgot-password')
   public async RestorePassword(@Body() user: UserDto) {
-    const res = await this.service.RestorePassword(user);
-    if (!res) {
-      return this.Response.status({
-        StatusCode: HttpStatus.NO_CONTENT,
-        Status: 'NO_CONTENT',
-      }).payload();
-    } else {
-      return this.Response.status({ StatusCode: HttpStatus.OK })
-        .message('MAIL_SEND')
-        .payload();
-    }
+    const res = await this.service.RequestForgotPassword(user);
+    if (res.error) return { ...res, status: HttpStatus.CONFLICT };
+    return { ...res, detail: 'MAIL_SEND' };
   }
 
   //chekear el token y asignara la nueva password
-  @Put('resetpassword')
+  @Put('forgot-password')
   public async ResetPassword(@Body() restore: ResetPasswordDto) {
-    const res = await this.service.ResetPassword(restore);
-    if (!res) {
-      return this.Response.status({
-        StatusCode: HttpStatus.NO_CONTENT,
-        Status: 'NO_CONTENT',
-      }).payload();
-    } else {
-      return this.Response.status({ StatusCode: HttpStatus.OK })
-        .message('PASSWORD_UPDATE')
-        .payload();
-    }
+    const res = await this.service.ForgotPassword(restore);
+    if (res.error) return { ...res, status: HttpStatus.CONFLICT };
+    return { ...res, detail: 'Contraseña actualizada' };
   }
 
   @Get()

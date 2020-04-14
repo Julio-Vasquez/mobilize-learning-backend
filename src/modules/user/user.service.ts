@@ -44,6 +44,7 @@ export class UserService {
       { userName: account.userName },
       { __v: 0 },
     ).exec();
+
     if (!res)
       return {
         error: 'NONEXISTENT_USER',
