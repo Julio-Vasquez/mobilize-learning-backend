@@ -1,6 +1,6 @@
 import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, startSession, Types } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 
@@ -48,14 +48,35 @@ export class AuthService {
   }
 
   public async SignUp(@Body() account: SignUpDto) {
+    const session = await startSession();
+    session.startTransaction();
+    try {
+      const id = Types.ObjectId();
+      const people = new this.PeopleModel({
+        _id: id,
+        identification: account.identification,
+        name: account.name,
+        lastName: account.lastName,
+        gender: account.gender,
+        birthDate: account.birthDate,
+        typeDoc: account.typeDoc,
+        state: State.Active,
+      });
+      people.save();
+
+      const user = new this.UserModel({ ...account, id });
+      user.save();
+
+      session.commitTransaction();
+    } catch (exp) {
+      session.abortTransaction();
+    } finally {
+      session.endSession();
+    }
     //register People
     //falta transacion,
     //falta el uso del codigo
-    const people = new this.PeopleModel(account);
-    people.save();
 
-    const user = new this.UserModel(account);
-    user.save();
     return true;
   }
 
