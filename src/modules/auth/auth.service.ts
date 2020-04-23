@@ -62,14 +62,19 @@ export class AuthService {
         typeDoc: account.typeDoc,
         state: State.Active,
       });
-      people.save();
+      people.save({ session: session });
 
       const user = new this.UserModel({ ...account, id });
-      user.save();
+      user.save({ session: session });
 
       session.commitTransaction();
     } catch (exp) {
+      console.log(exp);
       session.abortTransaction();
+      return {
+        error: 'ABORT_TRANSACTION',
+        detail: `Se aborto la transaccion, no pudo ser finalizada con exito : ${exp}`,
+      };
     } finally {
       session.endSession();
     }
@@ -77,10 +82,10 @@ export class AuthService {
     //falta transacion,
     //falta el uso del codigo
 
-    return true;
+    return { succes: 'OK' };
   }
 
-  //falta acomodar la url y el code
+  //falta acomodar la url
   public async RequestForgotPassword(user: UserDto) {
     const account = await this.UserModel.findOne({
       userName: user.userName,

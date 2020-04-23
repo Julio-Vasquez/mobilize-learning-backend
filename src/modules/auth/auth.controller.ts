@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { UserDto } from './dto/user.dto';
 import { ResetPasswordDto } from './dto/resetpassword.dto';
+import { SignUpDto } from './dto/signup.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -29,8 +30,12 @@ export class AuthController {
   }
 
   @Post('signup')
-  public async SingUp() {
-    return '';
+  public async SingUp(@Body() account: SignUpDto) {
+    const res: any = await this.service.SignUp(account);
+    if (res.error) {
+      return { ...res, detail: 'INCORRECT_SIGNUP' };
+    }
+    return { ...res, detail: 'SUCCESSFUL_SIGNUP' };
   }
 
   //genera el token y envia el email
