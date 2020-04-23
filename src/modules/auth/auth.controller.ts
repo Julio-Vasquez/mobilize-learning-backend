@@ -1,6 +1,5 @@
 import {
   Controller,
-  Get,
   Post,
   HttpStatus,
   Body,
@@ -11,8 +10,6 @@ import { JwtService } from '@nestjs/jwt';
 
 import { AuthService } from './auth.service';
 
-import { Response } from '../@common/response';
-
 import { LoginDto } from './dto/login.dto';
 import { UserDto } from './dto/user.dto';
 import { ResetPasswordDto } from './dto/resetpassword.dto';
@@ -21,7 +18,6 @@ import { ResetPasswordDto } from './dto/resetpassword.dto';
 export class AuthController {
   constructor(
     private readonly service: AuthService,
-    private readonly Response: Response,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -51,10 +47,5 @@ export class AuthController {
     const res = await this.service.ForgotPassword(restore);
     if (res.error) return { ...res, status: HttpStatus.CONFLICT };
     return { ...res, detail: 'Contraseña actualizada' };
-  }
-
-  @Get()
-  public holaMundo() {
-    return '<h1>Hola mundo desde el backend, dice Auth</h1>';
   }
 }
