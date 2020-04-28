@@ -32,6 +32,7 @@ export class AuthController {
   @Post('signup')
   public async SingUp(@Body() account: SignUpDto) {
     const res: any = await this.service.SignUp(account);
+    console.log(res);
     if (res.error) {
       return { ...res, detail: 'INCORRECT_SIGNUP' };
     }
