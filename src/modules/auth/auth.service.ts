@@ -1,6 +1,6 @@
 import { Injectable, Body } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model, startSession, Types } from 'mongoose';
+import { InjectModel, InjectConnection } from '@nestjs/mongoose';
+import { Model, Connection, Types } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 
@@ -17,6 +17,7 @@ import { SignUpDto } from './dto/signup.dto';
 import { IUser } from './interface/user.interface';
 import { IPeople } from './interface/people.interface';
 import { State } from '../@common/enums/state.enum';
+import { Role } from '../@common/enums/role.enum';
 
 @Injectable()
 export class AuthService {
@@ -28,6 +29,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly mail: Mail,
     private readonly jwt: JwtService,
+    @InjectConnection() private readonly connection: Connection,
   ) {}
 
   public async Login(login: LoginDto): Promise<any> {
@@ -48,7 +50,19 @@ export class AuthService {
   }
 
   public async SignUp(@Body() account: SignUpDto) {
-    const session = await startSession();
+    const exist = await this.PeopleModel.findOne({
+      userName: account.userName,
+    });
+
+    console.log(exist);
+    if (exist)
+      return {
+        error: 'EXISTING_USER',
+        detail: 'Ya existe el usuario que desea registrar',
+      };
+
+    const session = await this.connection.startSession();
+
     session.startTransaction();
     try {
       const id = Types.ObjectId();
@@ -64,13 +78,24 @@ export class AuthService {
       });
       people.save({ session: session });
 
-      const user = new this.UserModel({ ...account, id });
+      const user = new this.UserModel({
+        userName: account.userName,
+        password: account.password,
+        avatar: '',
+        email: account.email,
+        code: randomStringGenerator(),
+        role: Role.student,
+        state: State.Active,
+        people: id,
+      });
+
       user.save({ session: session });
 
       session.commitTransaction();
     } catch (exp) {
       console.log(exp);
       session.abortTransaction();
+      session.endSession();
       return {
         error: 'ABORT_TRANSACTION',
         detail: `Se aborto la transaccion, no pudo ser finalizada con exito : ${exp}`,
@@ -78,9 +103,6 @@ export class AuthService {
     } finally {
       session.endSession();
     }
-    //register People
-    //falta transacion,
-    //falta el uso del codigo
 
     return { succes: 'OK' };
   }
