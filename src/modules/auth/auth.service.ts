@@ -43,21 +43,30 @@ export class AuthService {
       : null;
   }
 
+  //falta la carga de la imagen de perfil {cover}
   public async SignUp(@Body() account: SignUpDto) {
-    const exist = await this.PeopleModel.findOne({
+    const usr = await this.UserModel.findOne({
       userName: account.userName,
     });
 
-    console.log(exist);
-    if (exist)
+    const ple = await this.PeopleModel.findOne({
+      identification: account.identification,
+    });
+
+    console.log(usr && ple);
+    if (usr && ple)
       return {
         error: 'EXISTING_USER',
         detail: 'Ya existe el usuario que desea registrar',
       };
 
     const session = await this.connection.startSession();
+    session.startTransaction({
+      readConcern: { level: 'local' },
+      writeConcern: { w: 'majority' },
+      readPreference: 'primary',
+    });
 
-    session.startTransaction();
     try {
       const id = Types.ObjectId();
       const people = new this.PeopleModel({
@@ -70,26 +79,24 @@ export class AuthService {
         typeDoc: account.typeDoc,
         state: State.Active,
       });
-      people.save({ session: session });
+      await people.save();
 
       const user = new this.UserModel({
+        _id: Types.ObjectId(),
         userName: account.userName,
         password: account.password,
-        avatar: '',
+        avatar: 'asdasd',
         email: account.email,
         code: randomStringGenerator(),
         role: Role.student,
         state: State.Active,
         people: id,
       });
+      await user.save();
 
-      user.save({ session: session });
-
-      session.commitTransaction();
+      await session.commitTransaction();
     } catch (exp) {
-      console.log(exp);
-      session.abortTransaction();
-      session.endSession();
+      await session.abortTransaction();
       return {
         error: 'ABORT_TRANSACTION',
         detail: `Se aborto la transaccion, no pudo ser finalizada con exito : ${exp}`,
@@ -97,7 +104,6 @@ export class AuthService {
     } finally {
       session.endSession();
     }
-
     return { succes: 'OK' };
   }
 
