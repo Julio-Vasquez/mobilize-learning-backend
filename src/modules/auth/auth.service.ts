@@ -9,15 +9,9 @@ import { Mail } from '../@common/mail';
 
 import { UserService } from './../user/user.service';
 
-import { LoginDto } from './dto/login.dto';
-import { UserDto } from './dto/user.dto';
-import { ResetPasswordDto } from './dto/resetpassword.dto';
-import { SignUpDto } from './dto/signup.dto';
-
-import { IUser } from './interface/user.interface';
-import { IPeople } from './interface/people.interface';
-import { State } from '../@common/enums/state.enum';
-import { Role } from '../@common/enums/role.enum';
+import { LoginDto, UserDto, ResetPasswordDto, SignUpDto } from './dto';
+import { IUser, IPeople } from './interface';
+import { State, Role } from '../@common/enums';
 
 @Injectable()
 export class AuthService {

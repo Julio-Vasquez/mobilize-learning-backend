@@ -18,6 +18,7 @@ import { MobilitybehaviorsModule } from './mobility-behaviors/mobilityBehaviors.
     }),
     AuthModule,
     UserModule,
+    RoadsignalModule,
   ],
   controllers: [],
   providers: [],

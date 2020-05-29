@@ -2,14 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { IUser } from './interface/user.interface';
-import { IPeople } from './interface/people.interface';
+import { IUser, IPeople } from './interface';
 
 import { AccountDto } from './dto/account.dto';
 
 import { ComparePassword } from '../@common/bcrypt/bcrypt';
 
-import { State } from './../@common/enums/state.enum';
+import { State } from './../@common/enums';
 
 @Injectable()
 export class UserService {

@@ -1,7 +1,6 @@
 import { Document } from 'mongoose';
 
-import { State } from '../../@common/enums/state.enum';
-import { Role } from '../../@common/enums/role.enum';
+import { State, Role } from '../../@common/enums';
 
 export interface IUser extends Document {
   readonly _id: string;

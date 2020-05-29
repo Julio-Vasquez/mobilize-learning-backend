@@ -1,5 +1,4 @@
-import { Role } from '../enums/role.enum';
-import { State } from '../enums/state.enum';
+import { Role, State } from '../enums';
 
 export interface TokenDecode {
   readonly name: string;
