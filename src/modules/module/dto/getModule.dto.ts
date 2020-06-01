@@ -1,5 +1,6 @@
 import { IsString, IsNotEmpty, IsMongoId, MinLength } from 'class-validator';
 import { IsStr, IsNE, MinL } from '../../@common/const/messages.const';
+import { TypeModule } from './../../@common/enums';
 
 export class GetModuleDto {
   @IsNotEmpty({ message: IsNE })

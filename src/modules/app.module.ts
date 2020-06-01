@@ -7,8 +7,9 @@ import { UserModule } from './user/user.module';
 import { MongooseConfigService } from './@common/mongoose/mongoose.service';
 import { CertificateModule } from './certificate/certificate.module';
 import { EvaluativetestModule } from './evaluative-test/evaluativeTest.module';
-import { RoadsignalModule } from './road-signal/roadSignal.module';
-import { MobilitybehaviorsModule } from './mobility-behaviors/mobilityBehaviors.module';
+import { ModuleModule } from './module/module.module';
+//import { RoadsignalModule } from './road-signal/roadSignal.module';
+//import { MobilitybehaviorsModule } from './mobility-behaviors/mobilityBehaviors.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { MobilitybehaviorsModule } from './mobility-behaviors/mobilityBehaviors.
     }),
     AuthModule,
     UserModule,
-    RoadsignalModule,
+    ModuleModule,
   ],
   controllers: [],
   providers: [],
