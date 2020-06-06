@@ -33,14 +33,14 @@ export class AuthService {
       },
       { _id: 0, email: 0, people: 0, __v: 0 },
     ).exec();
-
-    if (user.state !== State.Active)
-      return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
-    else if (!user)
+    console.log(user);
+    if (!user)
       return { error: 'NOT_EXIST_USER', detail: 'No existe el Usuario' };
+    else if (user.state !== State.Active)
+      return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
     return user && (await ComparePassword(login.password, user.password))
       ? user
-      : null;
+      : { error: 'NO_EQUALS_PASSWORD', detail: 'Las contraseñas no coinciden' };
   }
 
   //falta la carga de la imagen de perfil {cover}

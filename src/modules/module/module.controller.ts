@@ -16,7 +16,7 @@ export class ModuleController {
     return { sucess: 'ok', payload: response };
   }
 
-  @Post('current-content-road')
+  @Post('current-content')
   public async CurrentContentRoadSignal(@Body() ccrs: GetModuleDto) {
     if (isValidObjectId(ccrs._id)) {
       const response = await this.service.CurrentContent(ccrs);
