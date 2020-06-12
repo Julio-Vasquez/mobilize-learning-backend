@@ -33,7 +33,6 @@ export class AuthService {
       },
       { _id: 0, email: 0, people: 0, __v: 0 },
     ).exec();
-    console.log(user);
     if (!user)
       return { error: 'NOT_EXIST_USER', detail: 'No existe el Usuario' };
     else if (user.state !== State.Active)
