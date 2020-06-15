@@ -17,13 +17,14 @@ export class AuthController {
   constructor(
     private readonly service: AuthService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   @Post('login')
   public async Login(@Body() login: LoginDto) {
+    console.log(login)
     const res = await this.service.Login(login);
-    if (res.error) throw new UnauthorizedException(res);
-    return { sucess: 'OK', payload: this.jwtService.sign({ ...res._doc }) };
+    if (res.error) return { ...res, status: HttpStatus.UNAUTHORIZED };
+    return { sucess: 'OK', token: this.jwtService.sign({ ...res._doc }) };
   }
 
   @Post('signup')

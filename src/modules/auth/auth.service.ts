@@ -24,20 +24,20 @@ export class AuthService {
     private readonly mail: Mail,
     private readonly jwt: JwtService,
     @InjectConnection() private readonly connection: Connection,
-  ) {}
+  ) { }
 
   public async Login(login: LoginDto): Promise<any> {
     const user: IUser = await this.UserModel.findOne(
       {
         userName: login.userName,
       },
-      { _id: 0, email: 0, people: 0, __v: 0 },
+      { _id: 0, people: 0, __v: 0, password: 0 },
     ).exec();
     if (!user)
       return { error: 'NOT_EXIST_USER', detail: 'No existe el Usuario' };
     else if (user.state !== State.Active)
       return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
-    return user && (await ComparePassword(login.password, user.password))
+    return user /*&& (await ComparePassword(login.password, user.password))*/
       ? user
       : { error: 'NO_EQUALS_PASSWORD', detail: 'Las contraseñas no coinciden' };
   }
@@ -142,9 +142,9 @@ export class AuthService {
 
     return !mail
       ? {
-          error: 'ERROR_SEND_EMAIL',
-          detail: 'Ocurrio un problema al enviar el email',
-        }
+        error: 'ERROR_SEND_EMAIL',
+        detail: 'Ocurrio un problema al enviar el email',
+      }
       : { sucess: 'OK' };
   }
 
@@ -192,9 +192,9 @@ export class AuthService {
     return result.nModified > 0
       ? { sucess: 'OK' }
       : {
-          error: 'NO_UPDATE',
-          detail: 'Datos iguales',
-        };
+        error: 'NO_UPDATE',
+        detail: 'Datos iguales',
+      };
   }
 
   public async ValidUserToken(token: any): Promise<boolean> {
