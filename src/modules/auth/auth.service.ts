@@ -28,16 +28,14 @@ export class AuthService {
 
   public async Login(login: LoginDto): Promise<any> {
     const user: IUser = await this.UserModel.findOne(
-      {
-        userName: login.userName,
-      },
-      { _id: 0, people: 0, __v: 0, password: 0 },
+      { userName: login.userName },
+      { _id: 0, people: 0, __v: 0 },
     ).exec();
     if (!user)
       return { error: 'NOT_EXIST_USER', detail: 'No existe el Usuario' };
     else if (user.state !== State.Active)
       return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
-    return user /*&& (await ComparePassword(login.password, user.password))*/
+    return user && (await ComparePassword(login.password, user.password))
       ? user
       : { error: 'NO_EQUALS_PASSWORD', detail: 'Las contraseñas no coinciden' };
   }
