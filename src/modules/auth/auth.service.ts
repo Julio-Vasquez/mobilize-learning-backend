@@ -24,7 +24,7 @@ export class AuthService {
     private readonly mail: Mail,
     private readonly jwt: JwtService,
     @InjectConnection() private readonly connection: Connection,
-  ) { }
+  ) {}
 
   public async Login(login: LoginDto): Promise<any> {
     const user: IUser = await this.UserModel.findOne(
@@ -135,15 +135,15 @@ export class AuthService {
     const mail = await this.mail.SendSingleEMailHtml(
       account.email,
       'Reset Password',
-      `url/${token}`,
+      `localhost:3000/setnewpassword/${token}`,
     );
 
     return !mail
       ? {
-        error: 'ERROR_SEND_EMAIL',
-        detail: 'Ocurrio un problema al enviar el email',
-      }
-      : { sucess: 'OK' };
+          error: 'ERROR_SEND_EMAIL',
+          detail: 'Ocurrio un problema al enviar el email',
+        }
+      : { success: 'OK' };
   }
 
   public async ForgotPassword(restore: ResetPasswordDto) {
@@ -190,9 +190,9 @@ export class AuthService {
     return result.nModified > 0
       ? { sucess: 'OK' }
       : {
-        error: 'NO_UPDATE',
-        detail: 'Datos iguales',
-      };
+          error: 'NO_UPDATE',
+          detail: 'Datos iguales',
+        };
   }
 
   public async ValidUserToken(token: any): Promise<boolean> {
