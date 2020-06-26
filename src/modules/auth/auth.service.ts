@@ -3,6 +3,7 @@ import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 import { Model, Connection, Types } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
+import { ConfigService } from '@nestjs/config';
 
 import { HashPassword, ComparePassword } from '../@common/bcrypt/bcrypt';
 import { Mail } from '../@common/mail';
@@ -23,6 +24,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly mail: Mail,
     private readonly jwt: JwtService,
+    private readonly config: ConfigService,
     @InjectConnection() private readonly connection: Connection,
   ) {}
 
@@ -125,17 +127,15 @@ export class AuthService {
     const token = this.jwt.sign(
       {
         ID: account._id,
-        OldPassword: account.password,
         User: account.userName,
         Code: privateCode,
       },
       { expiresIn: 1500 },
     );
-
     const mail = await this.mail.SendSingleEMailHtml(
       account.email,
       'Reset Password',
-      `localhost:3000/setnewpassword/${token}`,
+      `${this.config.get<string>('app.client_Host')}/setnewpassword/${token}`,
     );
 
     return !mail
@@ -147,23 +147,23 @@ export class AuthService {
   }
 
   public async ForgotPassword(restore: ResetPasswordDto) {
+    console.log(restore);
     const token: any = this.jwt.decode(restore.token);
-
+    console.log(token);
     if (!token)
       return {
         error: 'INVALID_TOKEN',
         detail: 'Token invalido, o no encontrado',
       };
     else if (token.exp <= Math.round(new Date().getTime() / 1000))
-      return { error: 'TOKEN_EXPIRED', detaul: 'token expirado' };
+      return { error: 'TOKEN_EXPIRED', detail: 'token expirado' };
 
     const currentUser = await this.UserModel.findOne({
       _id: token.ID,
-      password: token.OldPassword,
       userName: token.User,
       code: token.Code,
     }).exec();
-
+    console.log(currentUser);
     if (!currentUser)
       return {
         error: 'NO_EXIST_USER',
@@ -177,18 +177,17 @@ export class AuthService {
     const result = await this.UserModel.updateOne(
       {
         _id: token.ID,
-        password: token.OldPassword,
         userName: token.User,
         code: token.Code,
       },
       {
-        password: await HashPassword(restore.newPassword),
+        password: await HashPassword(restore.password),
         code: privateCode,
       },
     ).exec();
 
     return result.nModified > 0
-      ? { sucess: 'OK' }
+      ? { success: 'OK' }
       : {
           error: 'NO_UPDATE',
           detail: 'Datos iguales',

@@ -9,7 +9,7 @@ export class Mail {
   constructor() {
     this.config = new ConfigMail();
     this.company = process.env.COMPANY;
-    this.email = process.env.PASSWORD;
+    this.email = process.env.EMAIL;
   }
 
   public async SendMultipleEMail(dest: string[], sub: string, txt: string) {

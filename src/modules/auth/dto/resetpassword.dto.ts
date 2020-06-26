@@ -11,5 +11,5 @@ export class ResetPasswordDto {
   @IsString({ message: IsStr })
   @MinLength(4, { message: `la contraseña ${MinL(4)}` })
   @MaxLength(45, { message: `la contraseña ${MaxL(45)}` })
-  public readonly newPassword: string;
+  public readonly password: string;
 }
