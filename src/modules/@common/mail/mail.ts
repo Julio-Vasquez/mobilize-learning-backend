@@ -23,12 +23,18 @@ export class Mail {
     return info.messageId ? true : false;
   }
 
-  public async SendMultipleEMailHtml(dest: string[], sub: string, url: string) {
+  public async SendMultipleEMailHtml(
+    dest: string[],
+    sub: string,
+    url: string,
+    user: string,
+    host: string,
+  ) {
     const info = await this.config.GetConfig().sendMail({
       from: `"${this.company} 👻" <${this.email}>`,
       to: dest,
       subject: `${sub} ✔`,
-      html: ResetPasswordMail(url, this.company, this.email, '', '', ''),
+      html: ResetPasswordMail(url, this.company, this.email, user, host),
     });
     console.log(`Message sent: ${info.messageId}`);
     return info.messageId ? true : false;
@@ -45,12 +51,18 @@ export class Mail {
     return info.messageId ? true : false;
   }
 
-  public async SendSingleEMailHtml(dest: string, sub: string, url: string) {
+  public async SendSingleEMailHtml(
+    dest: string,
+    sub: string,
+    url: string,
+    user: string,
+    host: string,
+  ) {
     const info = await this.config.GetConfig().sendMail({
       from: `"${this.company} 👻" <${this.email}>`,
       to: dest,
       subject: `${sub} ✔`,
-      html: ResetPasswordMail(url, this.company, this.email, '', '', ''),
+      html: ResetPasswordMail(url, this.company, this.email, user, host),
     });
     console.log(`Message sent: ${info.messageId}`);
     return info.messageId ? true : false;

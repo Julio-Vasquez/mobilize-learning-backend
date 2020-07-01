@@ -2,176 +2,184 @@ export const ResetPasswordMail = (
   url: string,
   company: string,
   email: string,
-  fb: string,
-  tw: string,
-  ins: string,
+  user: string,
+  host: string,
 ) => {
-  //console.log(url);
-  const Url = new URL(url);
   return `
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Reset Password - ${company} </title>
-        <style type="text/css">
-            @font-face {
-            font-family: 'flama-condensed';
-            font-weight: 100;
-            src: url('http://assets.vervewine.com/fonts/FlamaCond-Medium.eot');
-            src: url('http://assets.vervewine.com/fonts/FlamaCond-Medium.eot?#iefix') format('embedded-opentype'),
-                url('http://assets.vervewine.com/fonts/FlamaCond-Medium.woff') format('woff'),
-                url('http://assets.vervewine.com/fonts/FlamaCond-Medium.ttf') format('truetype');
-            }
-            @font-face {
-            font-family: 'Muli';
-            font-weight: 100;
-            src: url('http://assets.vervewine.com/fonts/muli-regular.eot');
-            src: url('http://assets.vervewine.com/fonts/muli-regular.eot?#iefix') format('embedded-opentype'),
-                url('http://assets.vervewine.com/fonts/muli-regular.woff2') format('woff2'),
-                url('http://assets.vervewine.com/fonts/muli-regular.woff') format('woff'),
-                url('http://assets.vervewine.com/fonts/muli-regular.ttf') format('truetype');
-            }
-            .address-description a {
-            color: #000000;
-            text-decoration: none;
-            }
-            @media (max-device-width: 480px) {
-                .vervelogoplaceholder {
-                    height: 83px;
-                }
-            }
-        </style>
-    </head>
-    <body bgcolor="#e1e5e8" style="margin-top:0 ;margin-bottom:0 ;margin-right:0 ;margin-left:0 ;padding-top:0px;padding-bottom:0px;padding-right:0px;padding-left:0px;background-color:#e1e5e8;">
-    <center style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background-color:#e1e5e8;">
-        <div style="max-width:600px;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;">
-        <table align="center" cellpadding="0" style="border-spacing:0;font-family:'Muli',Arial,sans-serif;color:#333333;Margin:0 auto;width:100%;max-width:600px;">
-            <tbody>
-            <tr>
-                <td align="center" class="vervelogoplaceholder" height="143" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;height:143px;vertical-align:middle;" valign="middle">
-                <span class="sg-image" data-imagelibrary="%7B%22width%22%3A%22160%22%2C%22height%22%3A34%2C%22alt_text%22%3A%22Verve%20Wine%22%2C%22alignment%22%3A%22%22%2C%22border%22%3A0%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/79d8f4f889362f0c7effb2c26e08814bb12f5eb31c053021ada3463c7b35de6fb261440fc89fa804edbd11242076a81c8f0a9daa443273da5cb09c1a4739499f.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
-                    <a href="#" target="_blank">
-                    <img alt="Verve Wine" height="34" src="https://marketing-image-production.s3.amazonaws.com/uploads/79d8f4f889362f0c7effb2c26e08814bb12f5eb31c053021ada3463c7b35de6fb261440fc89fa804edbd11242076a81c8f0a9daa443273da5cb09c1a4739499f.png" style="border-width: 0px; width: 160px; height: 34px;" width="160" />
-                    </a>
-                </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="one-column" style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;background-color:#ffffff;">
-                <table style="border-spacing:0;" width="100%">
-                    <tbody>
-                    <tr>
-                        <td align="center" class="inner" style="padding-top:15px;padding-bottom:15px;padding-right:30px;padding-left:30px;" valign="middle">
-                        <span class="sg-image" data-imagelibrary="%7B%22width%22%3A%22255%22%2C%22height%22%3A93%2C%22alt_text%22%3A%22Forgot%20Password%22%2C%22alignment%22%3A%22%22%2C%22border%22%3A0%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/35c763626fdef42b2197c1ef7f6a199115df7ff779f7c2d839bd5c6a8c2a6375e92a28a01737e4d72f42defcac337682878bf6b71a5403d2ff9dd39d431201db.png%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
-                            <img alt="Forgot Password" class="banner" height="93" src="https://marketing-image-production.s3.amazonaws.com/uploads/35c763626fdef42b2197c1ef7f6a199115df7ff779f7c2d839bd5c6a8c2a6375e92a28a01737e4d72f42defcac337682878bf6b71a5403d2ff9dd39d431201db.png" style="border-width: 0px; margin-top: 30px; width: 255px; height: 93px;" width="255" />
-                        </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="inner contents center" style="padding-top:15px;padding-bottom:15px;padding-right:30px;padding-left:30px;text-align:left;">
-                        <center>
-                            <p class="h1 center" style="Margin:0;text-align:center;font-family:'flama-condensed','Arial Narrow',Arial;font-weight:100;font-size:30px;Margin-bottom:26px;">
-                            Olvidaste tu contraseña
-                            </p>
-                            <p class="description center" style="font-family:'Muli','Arial Narrow',Arial;Margin:0;text-align:center;max-width:320px;color:#a1a8ad;line-height:24px;font-size:15px;Margin-bottom:10px;margin-left: auto; margin-right: auto;">
-                            <span style="color: rgb(161, 168, 173); font-family: Muli, &quot;Arial Narrow&quot;, Arial; font-size: 15px; text-align: center; background-color: rgb(255, 255, 255);">
-                                Eso está bien, suele suceder! Haga clic en el botón de abajo para restablecer su contraseña.
-                            </span>
-                            </p>
-                            <span class="sg-image" data-imagelibrary="%7B%22width%22%3A%22260%22%2C%22height%22%3A54%2C%22alt_text%22%3A%22Reset%20your%20Password%22%2C%22alignment%22%3A%22%22%2C%22border%22%3A0%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/c1e9ad698cfb27be42ce2421c7d56cb405ef63eaa78c1db77cd79e02742dd1f35a277fc3e0dcad676976e72f02942b7c1709d933a77eacb048c92be49b0ec6f3.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
-                            <a href="http://${url}" target="_blank">
-                                <img alt="Reset your Password" height="54" src="https://marketing-image-production.s3.amazonaws.com/uploads/c1e9ad698cfb27be42ce2421c7d56cb405ef63eaa78c1db77cd79e02742dd1f35a277fc3e0dcad676976e72f02942b7c1709d933a77eacb048c92be49b0ec6f3.png" style="border-width: 0px; margin-top: 30px; margin-bottom: 50px; width: 260px; height: 54px;" width="260">
-                            </a>
-                            
-                            </span>
-                        </center>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                </td>
-            </tr>
-            <tr>
-                <td height="40">
-                <p style="line-height: 40px; padding: 0 0 0 0; margin: 0 0 0 0;">
-                    &nbsp;
-                </p>
-                    <p>&nbsp;</p>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="padding-bottom:0;padding-right:0;padding-left:0;padding-top:0px;" valign="middle">
-                <span class="sg-image" data-imagelibrary="%7B%22width%22%3A%228%22%2C%22height%22%3A18%2C%22alt_text%22%3A%22Facebook%22%2C%22alignment%22%3A%22%22%2C%22border%22%3A0%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/0a1d076f825eb13bd17a878618a1f749835853a3a3cce49111ac7f18255f10173ecf06d2b5bd711d6207fbade2a3779328e63e26a3bfea5fe07bf7355823567d.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
-                    <a href="https://www.facebook.com/${fb}" target="_blank">
-                    <img alt="Facebook" height="18" src="https://marketing-image-production.s3.amazonaws.com/uploads/0a1d076f825eb13bd17a878618a1f749835853a3a3cce49111ac7f18255f10173ecf06d2b5bd711d6207fbade2a3779328e63e26a3bfea5fe07bf7355823567d.png" style="border-width: 0px; margin-right: 21px; margin-left: 21px; width: 8px; height: 18px;" width="8" />
-                    </a>
-                </span>
-                <span class="sg-image" data-imagelibrary="%7B%22width%22%3A%2223%22%2C%22height%22%3A18%2C%22alt_text%22%3A%22Twitter%22%2C%22alignment%22%3A%22%22%2C%22border%22%3A0%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/6234335b200b187dda8644356bbf58d946eefadae92852cca49fea227cf169f44902dbf1698326466ef192bf122aa943d61bc5b092d06e6a940add1368d7fb71.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
-                    <a href="https://twitter.com/${tw}" target="_blank">
-                    <img alt="Twitter" height="18" src="https://marketing-image-production.s3.amazonaws.com/uploads/6234335b200b187dda8644356bbf58d946eefadae92852cca49fea227cf169f44902dbf1698326466ef192bf122aa943d61bc5b092d06e6a940add1368d7fb71.png" style="border-width: 0px; margin-right: 16px; margin-left: 16px; width: 23px; height: 18px;" width="23" />
-                    </a>
-                </span>
-                <span class="sg-image" data-imagelibrary="%7B%22width%22%3A%2218%22%2C%22height%22%3A18%2C%22alt_text%22%3A%22Instagram%22%2C%22alignment%22%3A%22%22%2C%22border%22%3A0%2C%22src%22%3A%22https%3A//marketing-image-production.s3.amazonaws.com/uploads/650ae3aa9987d91a188878413209c1d8d9b15d7d78854f0c65af44cab64e6c847fd576f673ebef2b04e5a321dc4fed51160661f72724f1b8df8d20baff80c46a.png%22%2C%22link%22%3A%22%23%22%2C%22classes%22%3A%7B%22sg-image%22%3A1%7D%7D">
-                    <a href="https://www.instagram.com/${ins}/" target="_blank">
-                    <img alt="Instagram" height="18" src="https://marketing-image-production.s3.amazonaws.com/uploads/650ae3aa9987d91a188878413209c1d8d9b15d7d78854f0c65af44cab64e6c847fd576f673ebef2b04e5a321dc4fed51160661f72724f1b8df8d20baff80c46a.png" style="border-width: 0px; margin-right: 16px; margin-left: 16px; width: 18px; height: 18px;" width="18" />
-                    </a>
-                </span>
-                </td>
-            </tr>
-            <tr>
-                <td height="25">
-                <p style="line-height: 25px; padding: 0 0 0 0; margin: 0 0 0 0;">&nbsp;</p>
-                    <p>
-                    &nbsp;
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td style="padding-top:0;padding-bottom:0;padding-right:30px;padding-left:30px;text-align:center;Margin-right:auto;Margin-left:auto;">
-                <center>
-                    <p style="font-family:'Muli',Arial,sans-serif;Margin:0;text-align:center;Margin-right:auto;Margin-left:auto;font-size:15px;color:#a1a8ad;line-height:23px;">
-                    Problemas o Dudas? Llamanos
-                    <nobr>
-                        <a class="tel" href="tel:0000000000" style="color:#a1a8ad;text-decoration:none;" target="_blank">
-                        <span style="white-space: nowrap">
-                            0000000000
-                        </span>
-                        </a>
-                    </nobr>
-                    </p>
-                    <p style="font-family:'Muli',Arial,sans-serif;Margin:0;text-align:center;Margin-right:auto;Margin-left:auto;font-size:15px;color:#a1a8ad;line-height:23px;">
-                        o email 
-                    <a href="mailto:${email}" style="color:#a1a8ad;text-decoration:underline;" target="_blank">
-                        ${email}
-                    </a>
-                    </p>
-                    <p style="font-family:'Muli',Arial,sans-serif;Margin:0;text-align:center;Margin-right:auto;Margin-left:auto;padding-top:10px;padding-bottom:0px;font-size:15px;color:#a1a8ad;line-height:23px;">
-                    © ${company}  
-                    <span style="white-space: nowrap">
-                        Colombia,
-                    </span> 
-                    <span style="white-space: nowrap">
-                        CO
-                    </span>
-                    </p>
-                </center>
-                </td>
-            </tr>
-            <tr>
-                <td height="40">
-                <p style="line-height: 40px; padding: 0 0 0 0; margin: 0 0 0 0;">
-                    &nbsp;
-                </p>
-                <p>
-                    &nbsp;
-                </p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        </div>
-    </center>
-    </body>
-  `;
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="x-apple-disable-message-reformatting" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="color-scheme" content="light dark" />
+            <meta name="supported-color-schemes" content="light dark" />
+            <title>Reset Password - ${company} </title>
+            <style type="text/css" rel="stylesheet" media="all">
+                @import url(https://fonts.googleapis.com/css?family=Nunito+Sans:400,700&display=swap);body{width:100%!important;height:100%;margin:0;-webkit-text-size-adjust:none}a{color:#3869d4}a img{border:none}td{word-break:break-word}.preheader{display:none!important;visibility:hidden;mso-hide:all;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden}body,td,th{font-family:Muli,"Nunito Sans",Helvetica,Arial,sans-serif}h1{margin-top:0;color:#333;font-size:22px;font-weight:700;text-align:left}h2{margin-top:0;color:#333;font-size:16px;font-weight:700;text-align:left}h3{margin-top:0;color:#333;font-size:14px;font-weight:700;text-align:left}td,th{font-size:16px}blockquote,ol,p,ul{margin:.4em 0 1.1875em;font-size:16px;line-height:1.625;text-align:justify}p.sub{font-size:13px}.align-right{text-align:right}.align-left{text-align:left}.align-center{text-align:center}.button{background-color:#3869d4;border-top:10px solid #3869d4;border-right:18px solid #3869d4;border-bottom:10px solid #3869d4;border-left:18px solid #3869d4;display:inline-block;color:#fff;text-decoration:none;border-radius:3px;box-shadow:0 2px 3px rgba(0,0,0,.16);box-sizing:border-box}.button--green{background-color:#22bc66;border-top:10px solid #22bc66;border-right:18px solid #22bc66;border-bottom:10px solid #22bc66;border-left:18px solid #22bc66}.button--red{background-color:#ff6136;border-top:10px solid #ff6136;border-right:18px solid #ff6136;border-bottom:10px solid #ff6136;border-left:18px solid #ff6136}@media only screen and (max-width:500px){.button{width:100%!important;text-align:center!important}}.attributes{margin:0 0 21px}.attributes_content{background-color:#f4f4f7;padding:16px}.attributes_item{padding:0}.related{width:100%;margin:0;padding:25px 0 0 0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0}.related_item{padding:10px 0;color:#cbcccf;font-size:15px;line-height:18px}.related_item-title{display:block;margin:.5em 0 0}.related_item-thumb{display:block;padding-bottom:10px}.related_heading{border-top:1px solid #cbcccf;text-align:center;padding:25px 0 10px}.discount{width:100%;margin:0;padding:24px;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0;background-color:#f4f4f7;border:2px dashed #cbcccf}.discount_heading{text-align:center}.discount_body{text-align:center;font-size:15px}.social{width:auto}.social td{padding:0;width:auto}.social_icon{height:20px;margin:0 8px 10px 8px;padding:0}.purchase{width:100%;margin:0;padding:35px 0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0}.purchase_content{width:100%;margin:0;padding:25px 0 0 0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0}.purchase_item{padding:10px 0;color:#51545e;font-size:15px;line-height:18px}.purchase_heading{padding-bottom:8px;border-bottom:1px solid #eaeaec}.purchase_heading p{margin:0;color:#85878e;font-size:12px}.purchase_footer{padding-top:15px;border-top:1px solid #eaeaec}.purchase_total{margin:0;text-align:right;font-weight:700;color:#333}.purchase_total--label{padding:0 15px 0 0}body{background-color:#f2f4f6;color:#51545e}p{color:#51545e}.email-wrapper{width:100%;margin:0;padding:0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0;background-color:#f2f4f6}.email-content{width:100%;margin:0;padding:0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0}.email-masthead{padding:25px 0;text-align:center}.email-masthead_logo{width:94px}.email-masthead_name{font-size:16px;font-weight:700;color:#a8aaaf;text-decoration:none;text-shadow:0 1px 0 #fff}.email-body{width:100%;margin:0;padding:0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0}.email-body_inner{width:570px;margin:0 auto;padding:0;-premailer-width:570px;-premailer-cellpadding:0;-premailer-cellspacing:0;background-color:#fff}.email-footer{width:570px;margin:0 auto;padding:0;-premailer-width:570px;-premailer-cellpadding:0;-premailer-cellspacing:0;text-align:center}.email-footer p{color:#a8aaaf}.body-action{width:100%;margin:30px auto;padding:0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cellspacing:0;text-align:center}.body-sub{margin-top:25px;padding-top:25px;border-top:1px solid #eaeaec}.content-cell{padding:45px}@media only screen and (max-width:600px){.email-body_inner,.email-footer{width:100%!important}}@media (prefers-color-scheme:dark){.email-body,.email-body_inner,.email-content,.email-footer,.email-masthead,.email-wrapper,body{background-color:#333!important;color:#fff!important}blockquote,h1,h2,h3,ol,p,ul{color:#fff!important}.attributes_content,.discount{background-color:#222!important}.email-masthead_name{text-shadow:none!important}}:root{color-scheme:light dark;supported-color-schemes:light dark}
+                .linkbtn{color: #fff !important;}
+            </style>
+        </head>
+        <body>
+            <span class="preheader">
+                Use este link para restaurar su contraseña. Este link es valido solo por 30 minutos.
+            </span>
+            <table
+                class="email-wrapper"
+                width="100%"
+                cellpadding="0"
+                cellspacing="0"
+                role="presentation"
+            >
+                <tr>
+                    <td align="center">
+                        <table
+                            class="email-content"
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            role="presentation"
+                        >
+                            <tr>
+                                <td class="email-masthead">
+                                    <a
+                                        style="color:#fff;"
+                                        href="http://${host}/contact" target="_blank"
+                                        class="f-fallback email-masthead_name linkbtn"
+                                    >
+                                       [${company}]
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td
+                                    class="email-body"
+                                    width="570"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                >
+                                    <table
+                                        class="email-body_inner"
+                                        align="center"
+                                        width="570"
+                                        cellpadding="0"
+                                        cellspacing="0"
+                                        role="presentation"
+                                    >
+                                        <tr>
+                                            <td class="content-cell">
+                                                <div class="f-fallback">
+                                                    <img
+                                                        src="https://i.ibb.co/HKZwnKb/il-password-reset-2x.png" height="auto" style="border: 0; outline: none; text-decoration: none; vertical-align: bottom; max-width:1200px; padding-bottom: 0; display: inline!important; vertical-align: bottom; margin-top: -75px;"
+                                                    width="600"" />
+                                                    <h1>Hola ${user},</h1>
+                                                    <p>
+                                                        Recientemente solicitó restablecer la contraseña de su
+                                                        cuenta. Use el botón de abajo para restablecerlo.
+                                                        <strong> 
+                                                            Este restablecimiento de contraseña solo es válido
+                                                            durante los próximos 30 minutos
+                                                        </strong>
+                                                    </p>
+                                                    <table
+                                                        class="body-action"
+                                                        align="center"
+                                                        width="100%"
+                                                        cellpadding="0"
+                                                        cellspacing="0"
+                                                        role="presentation"
+                                                    >
+                                                        <tr>
+                                                            <td align="center">
+                                                                <table
+                                                                    width="100%"
+                                                                    border="0"
+                                                                    cellspacing="0"
+                                                                    cellpadding="0"
+                                                                    role="presentation"
+                                                                >
+                                                                    <tr>
+                                                                        <td align="center">
+                                                                            <a
+                                                                                href="http://${url}"
+                                                                                class="f-fallback button button--green"
+                                                                                target="_blank"
+                                                                            >
+                                                                                Restablecer tu contraseña
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <p>
+                                                        Si no solicitó un restablecimiento de contraseña,
+                                                        ignore este correo electrónico o
+                                                        <a href="http://${host}/contact" target="_blank">
+                                                            póngase en contacto con soporte
+                                                        </a>
+                                                        si usted Tiene alguna pregunta.
+                                                    </p>
+
+                                                    <p>
+                                                        Gracias, <br />The
+                                                        <strong>[${company}]</strong> Team
+                                                    </p>
+                        
+                                                    <table class="body-sub" role="presentation">
+                                                        <tr>
+                                                            <td>
+                                                                <p class="f-fallback sub">
+                                                                    Si tiene problemas con el botón de arriba, copie
+                                                                    y pegue la URL a continuación en su navegador
+                                                                    web.
+                                                                </p>
+                                                                <p class="f-fallback sub">
+                                                                    <a href="http://${url}" target="_blank">
+                                                                        ${url}
+                                                                    </a>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table
+                                        class="email-footer"
+                                        align="center"
+                                        width="570"
+                                        cellpadding="0"
+                                        cellspacing="0"
+                                        role="presentation"
+                                    >
+                                        <tr>
+                                            <td class="content-cell" align="center">
+                                                <p class="f-fallback sub align-center">
+                                                    &copy; ${new Date().getFullYear()} [${company}]. Todos los derechos reservados
+                                                    <br />[${company} Colombia (CO), LLC]
+                                                    <br />Escribenos ${email} 
+                                                    <br />¿ Tienes Dudas o inquietudes ? 
+                                                    <br />Llamanos 0000000000
+                                                    <br />1234 Street Rd.
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+    </html>
+
+    `;
 };

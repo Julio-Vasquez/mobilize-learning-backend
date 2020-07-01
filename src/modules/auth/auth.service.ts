@@ -136,6 +136,8 @@ export class AuthService {
       account.email,
       'Reset Password',
       `${this.config.get<string>('app.client_Host')}/setnewpassword/${token}`,
+      account.userName,
+      this.config.get<string>('app.client_Host'),
     );
 
     return !mail
@@ -158,16 +160,29 @@ export class AuthService {
     else if (token.exp <= Math.round(new Date().getTime() / 1000))
       return { error: 'TOKEN_EXPIRED', detail: 'token expirado' };
 
+    const checkCode = await this.UserModel.findOne({
+      _id: token.ID,
+      code: token.Code,
+    }).exec();
+
+    if (!checkCode)
+      return {
+        error: 'NO_EQUALS_CODE',
+        detail: 'Su private code fue cambiado',
+      };
+
     const currentUser = await this.UserModel.findOne({
       _id: token.ID,
       userName: token.User,
       code: token.Code,
     }).exec();
+
     console.log(currentUser);
     if (!currentUser)
       return {
         error: 'NO_EXIST_USER',
-        detail: 'No existe usuario con esas credenciales ',
+        detail:
+          'No existe usuario con esas credenciales o su private code fue cambiado',
       };
     else if (currentUser.state !== State.Active)
       return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
