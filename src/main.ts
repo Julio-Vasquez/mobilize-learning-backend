@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './modules/app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -12,6 +13,7 @@ async function bootstrap() {
   const config = app.get(ConfigService);
 
   app.enableCors();
+  app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix(config.get<string>('app.prefix'));
 
   await app.listen(config.get<number>('app.port'), () => {

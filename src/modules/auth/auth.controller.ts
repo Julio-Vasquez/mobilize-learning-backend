@@ -4,8 +4,10 @@ import {
   HttpStatus,
   Body,
   Put,
-  UnauthorizedException,
+  UploadedFiles,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { JwtService } from '@nestjs/jwt';
 
 import { AuthService } from './auth.service';
@@ -24,18 +26,18 @@ export class AuthController {
     console.log(login);
     const res = await this.service.Login(login);
     if (res.error) return { ...res, status: HttpStatus.UNAUTHORIZED };
-    return { success: 'OK', token: this.jwtService.sign({ ...res._doc }) };
+    //delete spread  operator
+    const { password, ...result } = res._doc;
+    return { success: 'OK', token: this.jwtService.sign({ result }) };
   }
 
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'avatar', maxCount: 1 }]))
   @Post('signup')
-  public async SingUp(@Body() account: SignUpDto) {
+  public async SingUp(@Body() account: SignUpDto, @UploadedFiles() file) {
+    console.log(account);
     const res: any = await this.service.SignUp(account);
-
-    if (res.error) return { ...res, detail: 'INCORRECT_SIGNUP' };
     console.log(res);
-    if (res.error) {
-      return { ...res, detail: 'INCORRECT_SIGNUP' };
-    }
+    if (res.error) return { ...res, detail: 'INCORRECT_SIGNUP' };
     return { ...res, detail: 'SUCCESSFUL_SIGNUP' };
   }
 

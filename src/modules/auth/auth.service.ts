@@ -29,14 +29,15 @@ export class AuthService {
   ) {}
 
   public async Login(login: LoginDto): Promise<any> {
-    const user: IUser = await this.UserModel.findOne(
+    const user: any = await this.UserModel.findOne(
       { userName: login.userName },
-      { _id: 0, people: 0, __v: 0 },
+      { _id: 0, people: 0, __v: 0, code: 0, email: 0 },
     ).exec();
     if (!user)
       return { error: 'NOT_EXIST_USER', detail: 'No existe el Usuario' };
     else if (user.state !== State.Active)
       return { error: 'INACTIVE_USER', detail: 'Usuario Inactivo' };
+    //delete user.password;
     return user && (await ComparePassword(login.password, user.password))
       ? user
       : { error: 'NO_EQUALS_PASSWORD', detail: 'Las contraseñas no coinciden' };
@@ -46,11 +47,11 @@ export class AuthService {
   public async SignUp(@Body() account: SignUpDto) {
     const usr = await this.UserModel.findOne({
       userName: account.userName,
-    });
+    }).exec();
 
     const ple = await this.PeopleModel.findOne({
       identification: account.identification,
-    });
+    }).exec();
 
     console.log(usr && ple);
     if (usr && ple)
@@ -80,10 +81,11 @@ export class AuthService {
       });
       await people.save();
 
+      console.log(people);
       const user = new this.UserModel({
         _id: Types.ObjectId(),
         userName: account.userName,
-        password: account.password,
+        password: await HashPassword(account.password),
         avatar: 'asdasd',
         email: account.email,
         code: randomStringGenerator(),

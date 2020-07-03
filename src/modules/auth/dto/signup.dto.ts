@@ -3,8 +3,7 @@ import {
   IsNotEmpty,
   MinLength,
   MaxLength,
-  IsNumber,
-  Min,
+  IsNumberString,
   IsEnum,
   IsISO8601,
   IsEmail,
@@ -23,8 +22,9 @@ import { TypeDocs } from '../../@common/enums/typedoc.enum';
 
 export class SignUpDto {
   @IsNotEmpty({ message: IsNE })
-  @IsNumber({}, { message: IsNb })
-  @Min(100000, { message: `La Identificación ${MinL(6)}` })
+  @IsNumberString({}, { message: IsNb })
+  @MinLength(6, { message: `El Nombre ${MinL(6)}` })
+  @MaxLength(14, { message: `El Nombre ${MaxL(14)}` })
   public readonly identification: number;
 
   @IsNotEmpty({ message: IsNE })
