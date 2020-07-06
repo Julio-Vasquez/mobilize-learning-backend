@@ -8,6 +8,7 @@ import { MongooseConfigService } from './@common/mongoose/mongoose.service';
 import { CertificateModule } from './certificate/certificate.module';
 import { EvaluativetestModule } from './evaluative-test/evaluativeTest.module';
 import { ModuleModule } from './module/module.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -18,8 +19,9 @@ import { ModuleModule } from './module/module.module';
     AuthModule,
     UserModule,
     ModuleModule,
+    FilesModule
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
