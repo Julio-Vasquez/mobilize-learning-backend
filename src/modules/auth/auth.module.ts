@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { UserSchema } from '../../schemas/user.schema';
 import { PeopleSchema } from '../../schemas/people.schema';
 import { UserService } from './../user/user.service';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -20,9 +21,15 @@ import { UserService } from './../user/user.service';
         expiresIn: 21600,
       },
     }),
+    MulterModule.registerAsync({
+      useFactory: () => ({
+        dest: '/uploads/avatar',
+        limits: { fileSize: 5000 }
+      })
+    })
   ],
   controllers: [AuthController],
   providers: [AuthService, UserService],
   exports: [AuthService, UserService],
 })
-export class AuthModule {}
+export class AuthModule { }

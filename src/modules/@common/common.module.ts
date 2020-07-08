@@ -6,8 +6,7 @@ import { MongooseConfigService } from './mongoose/mongoose.service';
 
 import { Mail } from './mail';
 import { Files } from './files/files';
-import { FileUploadService } from './files/multer.service';
-
+import { FileUploadService } from './files/upload.service';
 import app from './env/env.config';
 
 @Global()
@@ -28,4 +27,4 @@ import app from './env/env.config';
   providers: [JwtModule, MongooseConfigService, Mail, Files, FileUploadService],
   exports: [JwtModule, MongooseConfigService, Mail, Files, FileUploadService],
 })
-export class CommonModule {}
+export class CommonModule { }
