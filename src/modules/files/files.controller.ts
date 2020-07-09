@@ -18,7 +18,7 @@ export class FilesController {
     @Param('file') file: string) {
     const result: string = await this.fs.GetFile(folder, file);
     console.log(result + '.jpg')
-    return res.sendFile(result + '.jpg');
+    return res.sendFile(result);
   }
 
   @Get('/:folder/:file')

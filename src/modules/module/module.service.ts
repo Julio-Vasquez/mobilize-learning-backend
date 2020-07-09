@@ -11,18 +11,18 @@ export class ModuleService {
   constructor(
     @InjectModel('Data')
     public readonly DataModel: Model<IModule>,
-  ) {}
+  ) { }
 
   public async GetModules(type: string): Promise<IModule[] | any> {
     let modules: IModule[], isType: string;
 
-    if (TypeModule.RSD === type) {
+    if (TypeModule.RSD.toLowerCase() === type) {
       modules = await this.DataModel.find(
         { type: TypeModule.RSD, state: State.Active },
         { __v: 0 },
       ).exec();
       isType = TypeModule.RSD;
-    } else if (TypeModule.BD === type) {
+    } else if (TypeModule.BD.toLowerCase() === type) {
       modules = await this.DataModel.find(
         { type: TypeModule.BD, state: State.Active },
         { __v: 0 },
@@ -57,9 +57,9 @@ export class ModuleService {
 
     return content.state !== State.Active
       ? {
-          error: 'CONTENT_INACTIVE',
-          detail: 'El contenido que esta buscando se encuentra inactivo',
-        }
+        error: 'CONTENT_INACTIVE',
+        detail: 'El contenido que esta buscando se encuentra inactivo',
+      }
       : content;
   }
 }

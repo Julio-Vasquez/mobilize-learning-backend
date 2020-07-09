@@ -7,13 +7,14 @@ import { GetModuleDto } from './dto/getModule.dto';
 
 @Controller('module')
 export class ModuleController {
-  constructor(private readonly service: ModuleService) {}
+  constructor(private readonly service: ModuleService) { }
 
-  @Get('modules-:type/')
+  @Get(':type')
   public async GetModules(@Param('type') type: string) {
+    console.log(type)
     const response = await this.service.GetModules(type);
     if (response.error) return { ...response, status: HttpStatus.NO_CONTENT };
-    return { sucess: 'ok', payload: response };
+    return { success: 'ok', payload: response };
   }
 
   @Post('current-content')

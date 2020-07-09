@@ -24,7 +24,12 @@ import app from './env/env.config';
       },
     }),
   ],
-  providers: [JwtModule, MongooseConfigService, Mail, Files, FileUploadService],
+  providers: [
+    JwtModule,
+    MongooseConfigService,
+    Mail,
+    Files,
+    FileUploadService],
   exports: [JwtModule, MongooseConfigService, Mail, Files, FileUploadService],
 })
 export class CommonModule { }
