@@ -34,5 +34,5 @@ export const UserSchema = new Schema({
     enum: ['Activo', 'Inactivo'],
     default: 'Activo',
   },
-  people: { type: Schema.Types.ObjectId, ref: 'People' },
+  people: { type: Schema.Types.ObjectId, ref: 'peoples' },
 });

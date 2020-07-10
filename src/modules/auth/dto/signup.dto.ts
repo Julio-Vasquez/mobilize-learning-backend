@@ -17,8 +17,7 @@ import {
   IsDt,
 } from '../../@common/const/messages.const';
 
-import { Genders } from '../../@common/enums/gender.enum';
-import { TypeDocs } from '../../@common/enums/typedoc.enum';
+import { Genders, TypeDocs } from '../../@common/enums';
 
 export class SignUpDto {
   @IsNotEmpty({ message: IsNE })
