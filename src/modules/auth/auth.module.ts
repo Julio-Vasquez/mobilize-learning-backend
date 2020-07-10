@@ -20,12 +20,6 @@ import { MulterModule } from '@nestjs/platform-express';
       signOptions: {
         expiresIn: 21600,
       },
-    }),
-    MulterModule.registerAsync({
-      useFactory: () => ({
-        dest: '/uploads/avatar',
-        limits: { fileSize: 5000 }
-      })
     })
   ],
   controllers: [AuthController],

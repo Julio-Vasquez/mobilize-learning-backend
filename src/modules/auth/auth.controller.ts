@@ -9,17 +9,18 @@ import {
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { JwtService } from '@nestjs/jwt';
+import { diskStorage } from 'multer';
 
 import { AuthService } from './auth.service';
-
 import { LoginDto, UserDto, ResetPasswordDto, SignUpDto } from './dto';
+import { fileFilter, editFileName } from './../@common/files/functions.multer';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly service: AuthService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   @Post('login')
   public async Login(@Body() login: LoginDto) {
@@ -31,8 +32,14 @@ export class AuthController {
     return { success: 'OK', token: this.jwtService.sign({ result }) };
   }
 
-  @UseInterceptors(FileFieldsInterceptor([{ name: 'avatar', maxCount: 1 }]))
   @Post('signup')
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'avatar', maxCount: 1 }], {
+    storage: diskStorage({
+      destination: './uploads/avatar',
+      filename: editFileName,
+    }),
+    fileFilter: (req, file, cb) => fileFilter(file, cb, ['jpg', 'png'])
+  }))
   public async SingUp(@Body() account: SignUpDto, @UploadedFiles() file) {
     console.log(account);
     const res: any = await this.service.SignUp(account);
