@@ -12,21 +12,16 @@ export class ModuleController {
   @Get(':type')
   public async GetModules(@Param('type') type: string) {
     console.log(type)
-    const response = await this.service.GetModules(type);
-    if (response.error) return { ...response, status: HttpStatus.NO_CONTENT };
-    return { success: 'ok', payload: response };
+    const res = await this.service.GetModules(type);
+    return (res.error) ? { ...res, status: HttpStatus.NO_CONTENT } : { success: 'ok', payload: res };
   }
 
   @Post('current-content')
   public async CurrentContentRoadSignal(@Body() ccrs: GetModuleDto) {
     if (isValidObjectId(ccrs._id)) {
-      const response = await this.service.CurrentContent(ccrs);
-      if (response.error) return { ...response, status: HttpStatus.NO_CONTENT };
-      return { sucess: 'ok', payload: response };
+      const res = await this.service.CurrentContent(ccrs);
+      return (res.error) ? { ...res, status: HttpStatus.NO_CONTENT } : { sucess: 'ok', payload: res };
     } else
-      return {
-        error: 'INVALID_ObjectID',
-        detail: 'ObjectId (_id) es Invalido',
-      };
+      return { error: 'INVALID_ObjectID', detail: 'ObjectId (_id) es Invalido' };
   }
 }

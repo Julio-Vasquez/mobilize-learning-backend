@@ -17,25 +17,21 @@ export class UserService {
     private readonly UserModel: Model<IUser>,
     @InjectModel('People')
     private readonly PeopleModel: Model<IPeople>,
-  ) {}
+  ) { }
 
-  public async MyProfile(account: AccountDto) {
+  public async MyProfile(account: AccountDto): Promise<IPeople | any> {
     const _idPeople: IUser = await this.UserModel.findOne(
       { userName: account.userName },
       { people: 1 },
     ).exec();
 
-    if (!_idPeople)
-      return { error: 'NONEXISTENT_PEOPLE', detail: 'El usuario no existe' };
+    if (!_idPeople) return { error: 'NONEXISTENT_PEOPLE', detail: 'El usuario no existe' };
 
     const result: IPeople = await this.PeopleModel.findOne(
       { _id: _idPeople.people, state: State.Active },
-      { __v: 0 },
+      { __v: 0 }
     ).exec();
-
-    return !result
-      ? { error: 'PEOPLE_INACTIVE', detail: 'La persona no esta activo' }
-      : result;
+    return !result ? { error: 'PEOPLE_INACTIVE', detail: 'La persona no esta activo' } : result;
   }
 
   public async Account(account: AccountDto) {

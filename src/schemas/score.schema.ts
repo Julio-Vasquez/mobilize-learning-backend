@@ -1,12 +1,12 @@
 import { Schema } from 'mongoose';
 
-export const EvaluationResultSchema = new Schema({
+export const ScoreSchema = new Schema({
   _id: { required: false, type: Schema.Types.ObjectId },
   key: { required: true, type: Schema.Types.String },//incrementable de la persona,
   tag: {
     required: true,
     type: Schema.Types.String,
-    enum: ['Aprobado', 'Reprobado']
+    enum: ['APROBADO', 'REPROBADO', 'ACEPTABLE']
   },
   cal: {
     required: true,
@@ -14,6 +14,6 @@ export const EvaluationResultSchema = new Schema({
     min: 0,
     max: 10
   },
-  People: { type: Schema.Types.ObjectId, ref: 'peoples' },
+  idPeople: { type: Schema.Types.ObjectId, ref: 'peoples' },
   idTheme: { type: Schema.Types.ObjectId, ref: 'datas' }
 });

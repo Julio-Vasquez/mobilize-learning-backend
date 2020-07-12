@@ -27,8 +27,7 @@ export class AuthController {
     console.log(login);
     const res = await this.service.Login(login);
     if (res.error) return { ...res, status: HttpStatus.UNAUTHORIZED };
-    //delete spread  operator
-    const { password, ...result } = res._doc;
+    const { password, ...result } = res._doc;    //delete spread  operator
     return { success: 'OK', token: this.jwtService.sign({ result }) };
   }
 
@@ -42,25 +41,22 @@ export class AuthController {
   }))
   public async SingUp(@Body() account: SignUpDto, @UploadedFiles() file) {
     console.log(account);
-    const res: any = await this.service.SignUp(account);
+    const res = await this.service.SignUp(account);
     console.log(res);
-    if (res.error) return { ...res, detail: 'INCORRECT_SIGNUP' };
-    return { ...res, detail: 'SUCCESSFUL_SIGNUP' };
+    return (res.error) ? { ...res, detail: 'INCORRECT_SIGNUP' } : { ...res, detail: 'SUCCESSFUL_SIGNUP' };
   }
 
   //genera el token y envia el email
   @Post('request-forgot-password')
   public async RestorePassword(@Body() user: UserDto) {
     const res = await this.service.RequestForgotPassword(user);
-    if (res.error) return { ...res, status: HttpStatus.CONFLICT };
-    return { ...res, detail: 'MAIL_SEND' };
+    return (res.error) ? { ...res, status: HttpStatus.CONFLICT } : { ...res, detail: 'MAIL_SEND' };
   }
 
   //chekear el token y asignara la nueva password
   @Put('forgot-password')
   public async ResetPassword(@Body() restore: ResetPasswordDto) {
     const res = await this.service.ForgotPassword(restore);
-    if (res.error) return { ...res, status: HttpStatus.CONFLICT };
-    return { ...res, detail: 'Contraseña actualizada' };
+    return (res.error) ? { ...res, status: HttpStatus.CONFLICT } : { ...res, detail: 'PASSWORD_UPDATE!' };
   }
 }

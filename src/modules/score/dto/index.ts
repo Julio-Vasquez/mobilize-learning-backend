@@ -1,0 +1,1 @@
+export { ScoreDto } from './score.dto';

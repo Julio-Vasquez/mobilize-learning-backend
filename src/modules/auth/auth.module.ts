@@ -4,10 +4,9 @@ import { JwtModule } from '@nestjs/jwt';
 
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UserSchema } from '../../schemas/user.schema';
-import { PeopleSchema } from '../../schemas/people.schema';
 import { UserService } from './../user/user.service';
-import { MulterModule } from '@nestjs/platform-express';
+import { UserSchema } from '../../schemas';
+import { PeopleSchema } from '../../schemas';
 
 @Module({
   imports: [

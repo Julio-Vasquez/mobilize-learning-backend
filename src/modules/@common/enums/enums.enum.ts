@@ -32,7 +32,8 @@ export enum TypeModule {
   BD = 'BehaviorsData',
 }
 
-export enum Tab {
-  A = "Aprobado",
-  F = "Reprobado"
+export enum Tag {
+  A = "APROBADO",
+  F = "REPROBADO",
+  R = "ACEPTABLE"
 }

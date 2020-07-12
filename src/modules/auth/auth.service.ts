@@ -1,11 +1,11 @@
-import { Injectable, Body } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel, InjectConnection } from '@nestjs/mongoose';
 import { Model, Connection, Types } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { randomStringGenerator } from '@nestjs/common/utils/random-string-generator.util';
 import { ConfigService } from '@nestjs/config';
 
-import { HashPassword, ComparePassword } from '../@common/bcrypt/bcrypt';
+import { HashPassword, ComparePassword } from '../@common/bcrypt';
 import { Mail } from '../@common/mail';
 
 import { UserService } from './../user/user.service';
@@ -26,9 +26,9 @@ export class AuthService {
     private readonly jwt: JwtService,
     private readonly config: ConfigService,
     @InjectConnection() private readonly connection: Connection,
-  ) {}
+  ) { }
 
-  public async Login(login: LoginDto): Promise<any> {
+  public async Login(login: LoginDto) {
     const user: any = await this.UserModel.findOne(
       { userName: login.userName },
       { _id: 0, people: 0, __v: 0, code: 0, email: 0 },
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   //falta la carga de la imagen de perfil {cover}
-  public async SignUp(@Body() account: SignUpDto) {
+  public async SignUp(account: SignUpDto) {
     const usr = await this.UserModel.findOne({
       userName: account.userName,
     }).exec();
@@ -144,9 +144,9 @@ export class AuthService {
 
     return !mail
       ? {
-          error: 'ERROR_SEND_EMAIL',
-          detail: 'Ocurrio un problema al enviar el email',
-        }
+        error: 'ERROR_SEND_EMAIL',
+        detail: 'Ocurrio un problema al enviar el email',
+      }
       : { success: 'OK' };
   }
 
@@ -206,9 +206,9 @@ export class AuthService {
     return result.nModified > 0
       ? { success: 'OK' }
       : {
-          error: 'NO_UPDATE',
-          detail: 'Datos iguales',
-        };
+        error: 'NO_UPDATE',
+        detail: 'Datos iguales',
+      };
   }
 
   public async ValidUserToken(token: any): Promise<boolean> {

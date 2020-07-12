@@ -1,6 +1,6 @@
 db.getCollection("datas").insert([
     {
-        __v: NumberInt("0"),
+        __v: null,
         _id: ObjectId("5ed562708e5d45ac19849cde"),
         alt: "¿Qué son las señales de transito?",
         urlImg: "http://localhost:8550/ml/files/courses/65663380-6af0-4d12-8b3c-ef53daeae28c.jpg",
@@ -11,8 +11,8 @@ db.getCollection("datas").insert([
         state: "Activo"
     },
     {
-        __v: 0,
-        _id: "5f0764ea29f517205e203df0",
+        __v: null,
+        _id: ObjectId("5f0b78dd4aca06fc32c9b941"),
         alt: "¿Qué son las señales de transito preventivas?",
         urlImg: "http://localhost:8550/ml/files/courses/966f9bf3-20c0-4802-aa3a-6f37b9cee028.jpg",
         url: "preventive",

@@ -1,1 +1,1 @@
-export { State, Role, TypeDocs, TypeModule, TypeContent, Genders, Tab } from './enums.enum';
+export { State, Role, TypeDocs, TypeModule, TypeContent, Genders, Tag } from './enums.enum';
