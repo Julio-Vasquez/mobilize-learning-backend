@@ -30,7 +30,7 @@ export class AuthService {
 
   public async Login(login: LoginDto) {
     const user: any = await this.UserModel.findOne(
-      { userName: login.userName },
+      { userName: login.userName.toUpperCase() },
       { _id: 0, people: 0, __v: 0, code: 0, email: 0 },
     ).exec();
     if (!user)
@@ -84,7 +84,7 @@ export class AuthService {
       console.log(people);
       const user = new this.UserModel({
         _id: Types.ObjectId(),
-        userName: account.userName,
+        userName: account.userName.toUpperCase(),
         password: await HashPassword(account.password),
         avatar: 'asdasd',
         email: account.email,
@@ -111,7 +111,7 @@ export class AuthService {
   //falta acomodar la url
   public async RequestForgotPassword(user: UserDto) {
     const account = await this.UserModel.findOne({
-      userName: user.userName,
+      userName: user.userName.toUpperCase(),
     }).exec();
 
     if (!account) {
@@ -122,7 +122,7 @@ export class AuthService {
     const privateCode = randomStringGenerator();
 
     await this.UserModel.updateOne(
-      { userName: user.userName },
+      { userName: user.userName.toUpperCase() },
       { code: privateCode },
     ).exec();
     //token expire in 25minutes
@@ -175,7 +175,7 @@ export class AuthService {
 
     const currentUser = await this.UserModel.findOne({
       _id: token.ID,
-      userName: token.User,
+      userName: token.User.toUpperCase(),
       code: token.Code,
     }).exec();
 
@@ -194,7 +194,7 @@ export class AuthService {
     const result = await this.UserModel.updateOne(
       {
         _id: token.ID,
-        userName: token.User,
+        userName: token.User.toUpperCase(),
         code: token.Code,
       },
       {
