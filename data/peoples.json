@@ -1,0 +1,38 @@
+{
+    "RECORDS": [
+        {
+            "__v": {
+                "$numberInt": "0"
+            },
+            "_id": {
+                "$oid": "5e83ca99902fa9638005138d"
+            },
+            "birthDate": "22-02-1996",
+            "gender": "Masculino",
+            "identification": {
+                "$numberInt": "1117542316"
+            },
+            "lastName": "Vásquez",
+            "name": "Julio",
+            "state": "Activo",
+            "typeDoc": "Cédula de Ciudadanía"
+        },
+        {
+            "__v": {
+                "$numberInt": "0"
+            },
+            "_id": {
+                "$oid": "5eff9474c0545d12318fcae6"
+            },
+            "birthDate": "24-05-1994",
+            "gender": "Masculino",
+            "identification": {
+                "$numberInt": "1010215221"
+            },
+            "lastName": "Peña",
+            "name": "Alejandro",
+            "state": "Activo",
+            "typeDoc": "Cédula de Ciudadanía"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "RECORDS": [
+        {
+            "__v": {
+                "$numberInt": "0"
+            },
+            "_id": {
+                "$oid": "5e83cabe2280bb55b0a4fba7"
+            },
+            "avatar": "url",
+            "code": "9e3049b6-6a28-4dd1-a553-6a0bae3f8e5f",
+            "email": "jualvalitube@gmail.com",
+            "password": "$2b$10$yTMa1W5k6VYt1FQorwy55uqZbNB.jdx6xb3K2ZUEwJnHHQ9b7Aj8.",
+            "people": {
+                "$oid": "5e83ca99902fa9638005138d"
+            },
+            "role": "Administrador",
+            "state": "Activo",
+            "userName": "DARKPHURION"
+        },
+        {
+            "__v": {
+                "$numberInt": "0"
+            },
+            "_id": {
+                "$oid": "5eff9474c0545d12318fcae7"
+            },
+            "avatar": "asdasd",
+            "code": "eb9f142d-5199-477d-8dd0-7d9a8ab123c0",
+            "email": "700alejandro007@gmail.com",
+            "password": "$2b$10$dEU8e/o9WRBhZ80cHLD/mOSDF2qnwx50eNn92TGPC1AI0Q5XC4MP2",
+            "people": {
+                "$oid": "5eff9474c0545d12318fcae6"
+            },
+            "role": "Estudiante",
+            "state": "Activo",
+            "userName": "SANALEJO"
+        }
+    ]
+}
