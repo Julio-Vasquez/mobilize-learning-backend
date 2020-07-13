@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 
 export const ScoreSchema = new Schema({
   _id: { required: false, type: Schema.Types.ObjectId },
-  key: { required: true, type: Schema.Types.String },//incrementable de la persona,
+  key: { required: true, type: Schema.Types.Number },//incrementable de la persona,
   tag: {
     required: true,
     type: Schema.Types.String,

@@ -1,121 +1,101 @@
-{
-    "RECORDS": [
-        {
-            "__v": {
-                "$numberInt": "0"
-            },
-            "_id": {
-                "$oid": "5ed562708e5d45ac19849cde"
-            },
-            "alt": "¿Qué son las señales de transito?",
-            "description": "En este curso vas ha aprender a reconocer y a clasificar todas las señales de transito, la importancia de cada una de ellas en las vias y en la vida de un gran conductor",
-            "state": "Activo",
-            "title": "¿Qué son las señales de transito?",
-            "type": "RoadSignalData",
-            "url": "whatare",
-            "urlImg": "http://localhost:8550/ml/files/courses/65663380-6af0-4d12-8b3c-ef53daeae28c.jpg"
-        },
-        {
-            "__v": null,
-            "_id": {
-                "$oid": "5f0765b0c34ee3a18e005dd2"
-            },
-            "alt": "¿Qué son las señales de transito reglamentarias?",
-            "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito reglamentarias y estarás capacitado para conducir de la manera más responsable",
-            "state": "Activo",
-            "title": "Señales de transito Reglamentarias.",
-            "type": "RoadSignalData",
-            "url": "regulatory",
-            "urlImg": "http://localhost:8550/ml/files/courses/87746d18-9590-47f7-9883-703898429fcd.jpg"
-        },
-        {
-            "__v": null,
-            "_id": {
-                "$oid": "5f076628c34ee3a18e005dd3"
-            },
-            "alt": "¿Qué son las señales de transito informativas?",
-            "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito informativas y estarás capacitado para conducir de la manera más responsable",
-            "state": "Activo",
-            "title": "Señales de transito Informativas.",
-            "type": "RoadSignalData",
-            "url": "informative",
-            "urlImg": "http://localhost:8550/ml/files/courses/4532c5a8-610d-4406-aedd-fc3282652a81.jpg"
-        },
-        {
-            "__v": null,
-            "_id": {
-                "$oid": "5f0766bbc34ee3a18e005dd4"
-            },
-            "alt": "¿Qué son las señales de transito horizontales?",
-            "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito horizontales y estarás capacitado para conducir de la manera más responsable",
-            "state": "Activo",
-            "title": "Señales de transito Horizontales.",
-            "type": "RoadSignalData",
-            "url": "horizontal",
-            "urlImg": "http://localhost:8550/ml/files/courses/cf61a053-f2b8-466b-9ec8-786066eb2833.jpg"
-        },
-        {
-            "__v": null,
-            "_id": {
-                "$oid": "5f07672fc34ee3a18e005dd5"
-            },
-            "alt": "¿Qué son los Comportamientos de movilidad vial?",
-            "description": "Conducir es de las cosas más apasionantes que hay sobre la faz de la tierra, y es mucho mejor si lo hacemos de la manera más responsable, bajo buenos habitos de comportamientos de movilidad, En este curso aprenderas comportamientos de movilidad",
-            "state": "Activo",
-            "title": "Comportamientos de movilidad vial.",
-            "type": "BehaviorsData",
-            "url": "whatthis",
-            "urlImg": "http://localhost:8550/ml/files/courses/23be15b3-9dc8-41f8-baa0-93d970a68ad7.jpg"
-        },
-        {
-            "__v": null,
-            "_id": {
-                "$oid": "5f076811c34ee3a18e005dd6"
-            },
-            "alt": "¿Cómo Prevenir accidentes?",
-            "description": "Ser un buen conductor no solo implica conocer el funcionamiento del vehiculo  sino también saber actuar frente a circunstancias en las que se pueda presentar un siniestro vial. En este curso aprenderas la prevención de los siniestros viales",
-            "state": "Activo",
-            "title": "Prevenciones para accidentes.",
-            "type": "BehaviorsData",
-            "url": "accidents",
-            "urlImg": "http://localhost:8550/ml/files/courses/286bcb7c-2f17-4ad7-beec-36323a147ecc.jpg"
-        },
-        {
-            "__v": null,
-            "_id": {
-                "$oid": "5f0768abc34ee3a18e005dd7"
-            },
-            "alt": "Evita elementos distractores",
-            "description": "Existen reglas a la hora de conducir y cuidar nuestra integridad fisica y de los demas, la mejor forma de cumplirlo, es estar concentrados mientras conducimos, evitando cualquier tipo de elementos distractores. En el curso aprenderas a evitar esos objetos distractores",
-            "state": "Activo",
-            "title": "No lleves elementos distractores.",
-            "type": "BehaviorsData",
-            "url": "distract",
-            "urlImg": "http://localhost:8550/ml/files/courses/603d4918-b612-44ce-9fee-3e724b43efbf.jpg"
-        },
-        {
-            "__v": null,
-            "_id": {
-                "$oid": "5f07693fc34ee3a18e005ddb"
-            },
-            "alt": "Paciencia",
-            "description": "En este curso, aprenderás el significado y la aplicacion de las señales informativas, asi, como el comportamiento responsable de un buen conductor frente a situaciones que requieran de un conocimiento suficiente de las señales de transito",
-            "state": "Activo",
-            "title": "La paciencia es la mejor sabiduria.",
-            "type": "BehaviorsData",
-            "url": "patience",
-            "urlImg": "http://localhost:8550/ml/files/courses/0aa018f8-d9f5-485c-8faa-771e237e032c.jpg"
-        },
-        {
-            "__v": 0,
-            "_id": "5f0b78dd4aca06fc32c9b941",
-            "alt": "¿Qué son las señales de transito preventivas?",
-            "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito preventivas y estarás capacitado para conducir de la manera más responsable",
-            "state": "Activo",
-            "title": "Señales de transito Preventivas.",
-            "type": "RoadSignalData",
-            "url": "preventive",
-            "urlImg": "http://localhost:8550/ml/files/courses/966f9bf3-20c0-4802-aa3a-6f37b9cee028.jpg"
-        }
-    ]
-}
+[{
+  "_id": {
+    "$oid": "5ed562708e5d45ac19849cde"
+  },
+  "state": "Activo",
+  "alt": "¿Qué son las señales de transito?",
+  "urlImg": "http://localhost:8550/ml/files/courses/65663380-6af0-4d12-8b3c-ef53daeae28c.jpg",
+  "url": "whatare",
+  "title": "¿Qué son las señales de transito?",
+  "description": "En este curso vas ha aprender a reconocer y a clasificar todas las señales de transito, la importancia de cada una de ellas en las vias y en la vida de un gran conductor",
+  "type": "RoadSignalData",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f0765b0c34ee3a18e005dd2"
+  },
+  "title": "Señales de transito Reglamentarias.",
+  "state": "Activo",
+  "alt": "¿Qué son las señales de transito reglamentarias?",
+  "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito reglamentarias y estarás capacitado para conducir de la manera más responsable",
+  "url": "regulatory",
+  "type": "RoadSignalData",
+  "urlImg": "http://localhost:8550/ml/files/courses/87746d18-9590-47f7-9883-703898429fcd.jpg"
+},{
+  "_id": {
+    "$oid": "5f076628c34ee3a18e005dd3"
+  },
+  "state": "Activo",
+  "alt": "¿Qué son las señales de transito informativas?",
+  "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito informativas y estarás capacitado para conducir de la manera más responsable",
+  "title": "Señales de transito Informativas.",
+  "url": "informative",
+  "type": "RoadSignalData",
+  "urlImg": "http://localhost:8550/ml/files/courses/4532c5a8-610d-4406-aedd-fc3282652a81.jpg"
+},{
+  "_id": {
+    "$oid": "5f0766bbc34ee3a18e005dd4"
+  },
+  "state": "Activo",
+  "type": "RoadSignalData",
+  "urlImg": "http://localhost:8550/ml/files/courses/cf61a053-f2b8-466b-9ec8-786066eb2833.jpg",
+  "title": "Señales de transito Horizontales.",
+  "url": "horizontal",
+  "alt": "¿Qué son las señales de transito horizontales?",
+  "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito horizontales y estarás capacitado para conducir de la manera más responsable"
+},{
+  "_id": {
+    "$oid": "5f07672fc34ee3a18e005dd5"
+  },
+  "state": "Activo",
+  "type": "BehaviorsData",
+  "alt": "¿Qué son los Comportamientos de movilidad vial?",
+  "description": "Conducir es de las cosas más apasionantes que hay sobre la faz de la tierra, y es mucho mejor si lo hacemos de la manera más responsable, bajo buenos habitos de comportamientos de movilidad, En este curso aprenderas comportamientos de movilidad",
+  "title": "Comportamientos de movilidad vial.",
+  "url": "whatthis",
+  "urlImg": "http://localhost:8550/ml/files/courses/23be15b3-9dc8-41f8-baa0-93d970a68ad7.jpg"
+},{
+  "_id": {
+    "$oid": "5f076811c34ee3a18e005dd6"
+  },
+  "state": "Activo",
+  "alt": "¿Cómo Prevenir accidentes?",
+  "description": "Ser un buen conductor no solo implica conocer el funcionamiento del vehiculo  sino también saber actuar frente a circunstancias en las que se pueda presentar un siniestro vial. En este curso aprenderas la prevención de los siniestros viales",
+  "title": "Prevenciones para accidentes.",
+  "type": "BehaviorsData",
+  "url": "accidents",
+  "urlImg": "http://localhost:8550/ml/files/courses/286bcb7c-2f17-4ad7-beec-36323a147ecc.jpg"
+},{
+  "_id": {
+    "$oid": "5f0768abc34ee3a18e005dd7"
+  },
+  "state": "Activo",
+  "type": "BehaviorsData",
+  "description": "Existen reglas a la hora de conducir y cuidar nuestra integridad fisica y de los demas, la mejor forma de cumplirlo, es estar concentrados mientras conducimos, evitando cualquier tipo de elementos distractores. En el curso aprenderas a evitar esos objetos distractores",
+  "title": "No lleves elementos distractores.",
+  "url": "distract",
+  "urlImg": "http://localhost:8550/ml/files/courses/603d4918-b612-44ce-9fee-3e724b43efbf.jpg",
+  "alt": "Evita elementos distractores"
+},{
+  "_id": {
+    "$oid": "5f07693fc34ee3a18e005ddb"
+  },
+  "title": "La paciencia es la mejor sabiduria.",
+  "state": "Activo",
+  "type": "BehaviorsData",
+  "alt": "Paciencia",
+  "url": "patience",
+  "urlImg": "http://localhost:8550/ml/files/courses/0aa018f8-d9f5-485c-8faa-771e237e032c.jpg",
+  "description": "En este curso, aprenderás el significado y la aplicacion de las señales informativas, asi, como el comportamiento responsable de un buen conductor frente a situaciones que requieran de un conocimiento suficiente de las señales de transito"
+},{
+  "_id": {
+    "$oid": "5f0cdd74aa3b5428ac31cc19"
+  },
+  "alt": "¿Qué son las señales de transito preventivas?",
+  "description": "A traves de este curso desarrollaras competencias de reconocimiento de cada una de las señales de transito preventivas y estarás capacitado para conducir de la manera más responsable",
+  "state": "Activo",
+  "title": "Señales de transito Preventivas.",
+  "type": "RoadSignalData",
+  "url": "preventive",
+  "urlImg": "http://localhost:8550/ml/files/courses/966f9bf3-20c0-4802-aa3a-6f37b9cee028.jpg"
+}]

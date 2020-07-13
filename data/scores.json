@@ -1,0 +1,267 @@
+[{
+  "_id": {
+    "$oid": "5f0b93b7a5b4dc0c0a033a58"
+  },
+  "key": 1,
+  "tag": "APROBADO",
+  "cal": 10,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "idTheme": {
+    "$oid": "5f0765b0c34ee3a18e005dd2"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f0cd7b9c34ee35f5a0061e2"
+  },
+  "key": 2,
+  "cal": 8,
+  "tag": "APROBADO",
+  "__v": 0,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "idTheme": {
+    "$oid": "5ed562708e5d45ac19849cde"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd7cac34ee35f5a0061e3"
+  },
+  "key": 3,
+  "__v": 0,
+  "cal": 7,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "tag": "APROBADO",
+  "idTheme": {
+    "$oid": "5f0765b0c34ee3a18e005dd2"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd7f0c34ee35f5a0061e4"
+  },
+  "key": 4,
+  "tag": "ACEPTABLE",
+  "cal": 6,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f076628c34ee3a18e005dd3"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd80bc34ee35f5a0061e5"
+  },
+  "key": 5,
+  "tag": "REPROBADO",
+  "cal": 4,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f0766bbc34ee3a18e005dd4"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd81cc34ee35f5a0061e6"
+  },
+  "key": 6,
+  "tag": "REPROBADO",
+  "cal": 1,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f07672fc34ee3a18e005dd5"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd83cc34ee35f5a0061e7"
+  },
+  "key": 7,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "cal": 6,
+  "tag": "ACEPTABLE",
+  "idTheme": {
+    "$oid": "5ed562708e5d45ac19849cde"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd86dc34ee35f5a0061e8"
+  },
+  "key": 1,
+  "tag": "APROBADO",
+  "cal": 10,
+  "idPeople": {
+    "$oid": "5eff9474c0545d12318fcae6"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f0765b0c34ee3a18e005dd2"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd893c34ee35f5a0061e9"
+  },
+  "key": 8,
+  "tag": "APROBADO",
+  "cal": 9,
+  "__v": 0,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "idTheme": {
+    "$oid": "5f0765b0c34ee3a18e005dd2"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd8a8c34ee35f5a0061ea"
+  },
+  "key": 9,
+  "tag": "ACEPTABLE",
+  "cal": 6,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f076628c34ee3a18e005dd3"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd8b7c34ee35f5a0061eb"
+  },
+  "key": 2,
+  "tag": "APROBADO",
+  "cal": 9,
+  "__v": 0,
+  "idPeople": {
+    "$oid": "5eff9474c0545d12318fcae6"
+  },
+  "idTheme": {
+    "$oid": "5f076628c34ee3a18e005dd3"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd8c8c34ee35f5a0061ec"
+  },
+  "key": 10,
+  "tag": "ACEPTABLE",
+  "cal": 6,
+  "__v": 0,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "idTheme": {
+    "$oid": "5f0766bbc34ee3a18e005dd4"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd94dc34ee35f5a0061ed"
+  },
+  "key": 11,
+  "tag": "ACEPTABLE",
+  "cal": 2,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f07672fc34ee3a18e005dd5"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd9c2c34ee35f5a0061ee"
+  },
+  "key": 3,
+  "tag": "ACEPTABLE",
+  "cal": 6,
+  "idPeople": {
+    "$oid": "5eff9474c0545d12318fcae6"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f07672fc34ee3a18e005dd5"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cd9ebc34ee35f5a0061ef"
+  },
+  "key": 12,
+  "tag": "REPROBADO",
+  "cal": 0,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f076811c34ee3a18e005dd6"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cda30c34ee35f5a0061f0"
+  },
+  "key": 13,
+  "tag": "APROBADO",
+  "cal": 9,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f0768abc34ee3a18e005dd7"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cda4dc34ee35f5a0061f1"
+  },
+  "key": 14,
+  "tag": "ACEPTABLE",
+  "cal": 6,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f07693fc34ee3a18e005ddb"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cdb78c34ee35f5a0061f2"
+  },
+  "key": 15,
+  "tag": "APROBADO",
+  "cal": 8,
+  "idPeople": {
+    "$oid": "5e83ca99902fa9638005138d"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f0cdd74aa3b5428ac31cc19"
+  }
+},{
+  "_id": {
+    "$oid": "5f0cdb8cc34ee35f5a0061f3"
+  },
+  "key": 4,
+  "tag": "APROBADO",
+  "cal": 7,
+  "idPeople": {
+    "$oid": "5eff9474c0545d12318fcae6"
+  },
+  "__v": 0,
+  "idTheme": {
+    "$oid": "5f076628c34ee3a18e005dd3"
+  }
+}]
