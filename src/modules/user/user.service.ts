@@ -29,7 +29,7 @@ export class UserService {
 
     const result: IPeople = await this.PeopleModel.findOne(
       { _id: _idPeople.people, state: State.Active },
-      { __v: 0 }
+      { __v: 0, _id: 0 }
     ).exec();
     return !result ? { error: 'PEOPLE_INACTIVE', detail: 'La persona no esta activo' } : result;
   }
@@ -37,7 +37,7 @@ export class UserService {
   public async Account(account: AccountDto) {
     const res = await this.UserModel.findOne(
       { userName: account.userName },
-      { __v: 0 },
+      { __v: 0, _id: 0 },
     ).exec();
 
     if (!res)

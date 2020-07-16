@@ -6,11 +6,11 @@ export const ContentSchema = new Schema({
     type: String,
     enum: ['PDF', 'Image', 'Video'],
   },
-  title: { required: true, type: Schema.Types.String },
+  title: { required: true, type: String },
   description: {
     required: true,
     type: Schema.Types.String,
     minlength: 5,
   },
-  id_Data: { type: Schema.Types.ObjectId, ref: 'Data' },
+  id_Data: { type: Schema.Types.ObjectId, ref: 'datas', required: true },
 });

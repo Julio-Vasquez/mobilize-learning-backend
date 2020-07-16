@@ -2,9 +2,24 @@ import { Schema } from 'mongoose';
 
 export const PeopleSchema = new Schema({
   _id: { required: false, type: Schema.Types.ObjectId },
-  identification: { required: true, type: Number, unique: true, index: true },
-  name: { required: true, type: String },
-  lastName: { required: true, type: String },
+  identification: {
+    required: true,
+    type: Number,
+    unique: true,
+    index: true
+  },
+  name: {
+    required: true,
+    type: String,
+    minlength: 3,
+    maxlength: 45
+  },
+  lastName: {
+    required: true,
+    type: String,
+    minlength: 3,
+    maxlength: 45
+  },
   gender: {
     required: true,
     type: String,

@@ -5,32 +5,35 @@ export const DataSchema = new Schema({
   alt: { required: true, type: Schema.Types.String },
   urlImg: {
     required: true,
-    type: Schema.Types.String,
+    type: String,
+    unique: true,
+    minlength: 4,
+    index: true
   },
   url: {
     required: true,
-    type: Schema.Types.String,
+    type: String,
     unique: true,
     index: true,
   },
   title: {
     required: true,
-    type: Schema.Types.String,
+    type: String,
     maxlength: 100,
   },
   description: {
     required: true,
-    type: Schema.Types.String,
+    type: String,
     minlength: 20,
   },
   type: {
     required: true,
-    type: Schema.Types.String,
+    type: String,
     enum: ['BehaviorsData', 'RoadSignalData'],
   },
   state: {
     required: true,
-    type: Schema.Types.String,
+    type: String,
     enum: ['Activo', 'Inactivo'],
     default: 'Activo',
   },

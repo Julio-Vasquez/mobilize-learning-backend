@@ -14,6 +14,7 @@ export const UserSchema = new Schema({
     required: true,
     type: String,
     minlength: 4,
+    maxlength: 45
   },
   avatar: { required: true, type: String },
   email: {

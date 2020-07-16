@@ -65,7 +65,6 @@ export class ScoreService {
           key: 1,
           tag: 1,
           cal: 1,
-          idPeople: 1,
           name: "$peopleDoc.name",
           lastName: "$peopleDoc.lastName",
           theme: "$theme.title"

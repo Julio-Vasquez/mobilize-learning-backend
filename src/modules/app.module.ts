@@ -21,7 +21,8 @@ import { ScoreModule } from './score/score.module';
     UserModule,
     ModuleModule,
     FilesModule,
-    ScoreModule
+    ScoreModule,
+    CertificateModule
   ]
 })
 export class AppModule { }
