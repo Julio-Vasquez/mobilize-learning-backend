@@ -10,6 +10,13 @@ export const CertificateSchema = new Schema({
     unique: true,
     minlength: 4
   },
+  urlPreview: {
+    required: false,
+    type: String,
+    index: true,
+    unique: true,
+    minlength: 4
+  },
   progress: {
     required: true,
     type: Number,
