@@ -1,11 +1,10 @@
 import { IsString, IsNotEmpty, IsMongoId, MinLength } from 'class-validator';
 import { IsStr, IsNE, MinL } from '../../@common/const/messages.const';
-import { TypeModule } from './../../@common/enums';
 
 export class GetModuleDto {
   @IsNotEmpty({ message: IsNE })
   @IsString({ message: IsStr })
-  @IsMongoId({ message: 'No es un id valido de mongoDB' })
+  @IsMongoId({ message: 'No es un ObjectId valido de mongoDB' })
   readonly _id: string;
 
   @IsNotEmpty({ message: IsNE })

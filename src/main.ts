@@ -26,9 +26,7 @@ async function bootstrap() {
       'Logger-App-Mode',
     );
     Logger.log(
-      `🚀  Server Running on ${config.get<string>('app.host')}:${config.get<
-        number
-      >('app.port')}/${config.get<string>('app.prefix')}/ 🚀 `,
+      `🚀  Server Running on ${config.get<string>('app.host')}:${config.get<number>('app.port')}/${config.get<string>('app.prefix')}/ 🚀 `,
       'Logger-Server-Running',
     );
   });

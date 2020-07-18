@@ -8,7 +8,7 @@ export class CertificateController {
 
   @Post('generate')
   public async generateCertificate(@Body() account: CertificateDto) {
-    const res: any = await this.certificateService.Generate(account);
+    const res = await this.certificateService.Generate(account);
 
     return (res.error) ? { ...res, status: HttpStatus.NO_CONTENT } : { success: 'ok', payload: res };
   }

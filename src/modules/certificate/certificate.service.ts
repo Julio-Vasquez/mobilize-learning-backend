@@ -51,12 +51,12 @@ export class CertificateService {
 
     const certificate = await this.certificateModel.findOne({ idUser: user[0]._id }).exec();
 
-    if (!certificate) this.CreateCertificateBase(user[0]._id);//en caso de no existir el registro lo creo
+    if (!certificate) await this.CreateCertificateBase(user[0]._id);//en caso de no existir el registro lo creo
 
     //si existe el registro
     const { _id, generate, progress, urlCertificate, urlPreview } = certificate;
 
-    if (generate) return { certificate: urlCertificate, preview: urlPreview }; //ya ha sido generado, solo se retorna la url
+    if (generate) return { certificate: urlCertificate, preview: urlPreview, generate: generate }; //ya ha sido generado, solo se retorna la url
     else if (progress === 100) {  //ya completo el contenido, pero nunca genero el certificado
       //generaremos el certificado chekeando que ya tenga el 100% del contenido terminado
       const html = Template(user[0].name, user[0].lastName, user[0].identification); //obtengo la plantilla html para crear el pdf
@@ -70,10 +70,10 @@ export class CertificateService {
         if (err) console.log(err)
         else console.log(res)
       });
-      const fullPathPdf = `http://${this.config.get<string>('app.host')}:${this.config.get<number>('app.port')}/${this.config.get<string>('app.prefix')}/files/certificatesPdf/${fileName}.pdf`;
-      const fullPathPng = `http://${this.config.get<string>('app.host')}:${this.config.get<number>('app.port')}/${this.config.get<string>('app.prefix')}/files/certificatesPng/${fileName}.png`;
+      const fullPathPdf: string = `http://${this.config.get<string>('app.host')}:${this.config.get<number>('app.port')}/${this.config.get<string>('app.prefix')}/files/certificatesPdf/${fileName}.pdf`;
+      const fullPathPng: string = `http://${this.config.get<string>('app.host')}:${this.config.get<number>('app.port')}/${this.config.get<string>('app.prefix')}/files/certificatesPng/${fileName}.png`;
       //configuracion para convertir el pdf a imagen
-      let config = {
+      const config = {
         fileName: join(__dirname + `../../../../uploads/certificatesPdf/${fileName}.pdf`),
         exportPath: 'uploads/certificatesPng/',
         convertTo: 'png',
@@ -81,11 +81,11 @@ export class CertificateService {
       //le doy un time al metodo anterior por que es lento!
       setTimeout(() => {
         convert(config)
-      }, 2800);
+      }, 3000);
       //actualizo las urls
       await this.certificateModel.updateOne({ _id: _id }, { urlCertificate: fullPathPdf, generate: true, urlPreview: fullPathPng });
       //retorno las url
-      return { certificate: fullPathPdf, preview: fullPathPng };
+      return { certificate: fullPathPdf, preview: fullPathPng, generate: false };
     } else return { error: 'PROGRESS_NOT_FULL', detail: 'No ha completado el 100% de los cursos' };//no ha completado el contenidoido generado y solicita el certificado
 
   }
