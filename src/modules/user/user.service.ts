@@ -21,8 +21,8 @@ export class UserService {
 
   public async MyProfile(account: AccountDto): Promise<IPeople | any> {
     const _idPeople: IUser = await this.UserModel.findOne(
-      { userName: account.userName },
-      { people: 1 },
+      { userName: account.userName.toUpperCase() },
+      { people: 1, role: 1, avatar: 1, userName: 1, _id: 0, state: 1 },
     ).exec();
 
     if (!_idPeople) return { error: 'NONEXISTENT_PEOPLE', detail: 'El usuario no existe' };
@@ -31,12 +31,17 @@ export class UserService {
       { _id: _idPeople.people, state: State.Active },
       { __v: 0, _id: 0 }
     ).exec();
-    return !result ? { error: 'PEOPLE_INACTIVE', detail: 'La persona no esta activo' } : result;
+
+    if (!result) return { error: 'PEOPLE_INACTIVE', detail: 'La persona no esta activo' };
+    else {
+      const { people, ...resPeople } = _idPeople.toJSON();
+      return { ...resPeople, ...result.toJSON() };
+    }
   }
 
   public async Account(account: AccountDto) {
     const res = await this.UserModel.findOne(
-      { userName: account.userName },
+      { userName: account.userName.toUpperCase() },
       { __v: 0, _id: 0 },
     ).exec();
 
