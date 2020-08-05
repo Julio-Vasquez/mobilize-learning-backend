@@ -24,4 +24,10 @@ export class ModuleController {
     } else
       return { error: 'INVALID_ObjectID', detail: 'ObjectId (_id) es Invalido' };
   }
+
+  @Get('content/:module')
+  public async GetListContentModule(@Param('module') module: string) {
+    const res: any = await this.service.ListContentModule(module);
+    return res.error ? { ...res, status: HttpStatus.NO_CONTENT } : { success: 'ok', payload: res };
+  }
 }

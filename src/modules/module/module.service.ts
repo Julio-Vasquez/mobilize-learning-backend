@@ -2,15 +2,17 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
-import { IModule } from './interface/module.interface';
 import { TypeModule, State } from './../@common/enums';
 import { GetModuleDto } from './dto/getModule.dto';
+import { IContent, IModule } from './interface';
 
 @Injectable()
 export class ModuleService {
   constructor(
     @InjectModel('Data')
     public readonly DataModel: Model<IModule>,
+    @InjectModel('Content')
+    public readonly ContentModel: Model<IContent>
   ) { }
 
   public async GetModules(type: string): Promise<IModule[] | any> {
@@ -61,5 +63,16 @@ export class ModuleService {
         detail: 'El contenido que esta buscando se encuentra inactivo',
       }
       : content;
+  }
+
+  public async ListContentModule(module) {
+    const { _id }: IModule = await this.DataModel.findOne({ type: module }, { _id: 1 });
+    if (!_id) return { error: 'NO_MODULE', detail: 'No existe ese modulo' };
+
+    const content: IContent[] = await this.ContentModel.find({ id_Data: _id, state: State.Active });
+    if (!content || content.length < 1)
+      return { error: 'NO_CONTENT', detail: 'No existe contenido relacionado a ese modulo' };
+
+    return content;
   }
 }
