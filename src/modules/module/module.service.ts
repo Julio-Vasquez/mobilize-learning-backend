@@ -65,7 +65,7 @@ export class ModuleService {
       : content;
   }
 
-  public async ListContentModule(module) {
+  public async ListContentModule(module): Promise<IContent | any> {
     const { _id }: IModule = await this.DataModel.findOne({ type: module }, { _id: 1 });
     if (!_id) return { error: 'NO_MODULE', detail: 'No existe ese modulo' };
 
