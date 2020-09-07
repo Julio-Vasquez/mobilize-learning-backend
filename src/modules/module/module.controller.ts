@@ -3,7 +3,7 @@ import { isValidObjectId } from 'mongoose';
 
 import { ModuleService } from './module.service';
 
-import { GetModuleDto } from './dto/getModule.dto';
+import { GetModuleDto } from './dto';
 
 @Controller('module')
 export class ModuleController {
@@ -23,11 +23,5 @@ export class ModuleController {
       return (res.error) ? { ...res, status: HttpStatus.NO_CONTENT } : { sucess: 'ok', payload: res };
     } else
       return { error: 'INVALID_ObjectID', detail: 'ObjectId (_id) es Invalido' };
-  }
-
-  @Get('content/:module')
-  public async GetListContentModule(@Param('module') module: string) {
-    const res = await this.service.ListContentModule(module);
-    return res.error ? { ...res, status: HttpStatus.NO_CONTENT } : { success: 'ok', payload: res };
   }
 }

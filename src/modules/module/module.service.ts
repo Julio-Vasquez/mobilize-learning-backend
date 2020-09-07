@@ -1,18 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Model } from 'mongoose';
 
+import { IModule } from './interface/module.interface';
 import { TypeModule, State } from './../@common/enums';
-import { GetModuleDto } from './dto/getModule.dto';
-import { IContent, IModule } from './interface';
+import { GetModuleDto } from './dto';
 
 @Injectable()
 export class ModuleService {
   constructor(
     @InjectModel('Data')
     public readonly DataModel: Model<IModule>,
-    @InjectModel('Content')
-    public readonly ContentModel: Model<IContent>
   ) { }
 
   public async GetModules(type: string): Promise<IModule[] | any> {
@@ -47,9 +45,11 @@ export class ModuleService {
 
   public async CurrentContent(ccrs: GetModuleDto): Promise<IModule | any> {
     const content: IModule = await this.DataModel.findOne(
-      { _id: ccrs._id, url: ccrs.url },
+      { url: ccrs.url },
       { __v: 0 },
     ).exec();
+
+    console.log(content)
 
     if (!content)
       return {
@@ -65,14 +65,4 @@ export class ModuleService {
       : content;
   }
 
-  public async ListContentModule(module): Promise<IContent | any> {
-    const { _id }: IModule = await this.DataModel.findOne({ type: module }, { _id: 1 });
-    if (!_id) return { error: 'NO_MODULE', detail: 'No existe ese modulo' };
-
-    const content: IContent[] = await this.ContentModel.find({ id_Data: _id, state: State.Active });
-    if (!content || content.length < 1)
-      return { error: 'NO_CONTENT', detail: 'No existe contenido relacionado a ese modulo' };
-
-    return content;
-  }
 }
