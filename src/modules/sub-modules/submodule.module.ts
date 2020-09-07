@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { SubmoduleController } from './submodule.contronller';
+import { SubmoduleController } from './submodule.controller';
 import { SubmoduleService } from './submodule.service';
 import { SubdataSchema } from './../../schemas';
 
