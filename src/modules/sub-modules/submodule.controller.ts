@@ -9,17 +9,17 @@ export class SubmoduleController {
   ) { }
 
   @Get(':title')
-  public async CurrentSubmodule(@Param(':title') title: string) {
-    if (title != undefined || title != '' || !title) {
+  public async CurrentSubmodule(@Param('title') title: string) {
+    if (title !== undefined || title !== '') {
       const res = await this.submoduleService.CurrentSubmodule(title);
       return (res.error) ? { ...res, status: HttpStatus.NO_CONTENT } : { success: 'ok', payload: res };
     }
     return { error: 'PAYLOAD_UNDEFINED', detail: 'the "Title" parameter can not be empty or undefined.' }
   }
 
-  @Get('titles/:type')
-  public async GetTitles(@Param(':type') type: string) {
-    if (type != undefined || type != '' || !type) {
+  @Get(':type')
+  public async GetTitles(@Param('type') type: string) {
+    if (type !== undefined || type !== '') {
       const res = await this.submoduleService.GetTitles(type);
       return (res.error) ? { ...res, status: HttpStatus.NO_CONTENT } : { success: 'ok', payload: res };
     }

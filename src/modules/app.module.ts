@@ -10,6 +10,8 @@ import { EvaluativetestModule } from './evaluative-test/evaluativeTest.module';
 import { ModuleModule } from './module/module.module';
 import { FilesModule } from './files/files.module';
 import { ScoreModule } from './score/score.module';
+import { SubModule } from './sub-modules/submodule.module';
+import { ContentModule } from './content/content.module';
 
 @Module({
   imports: [
@@ -20,9 +22,12 @@ import { ScoreModule } from './score/score.module';
     AuthModule,
     UserModule,
     ModuleModule,
+    ContentModule,
+    SubModule,
     FilesModule,
     ScoreModule,
-    CertificateModule
+    CertificateModule,
+    EvaluativetestModule
   ]
 })
 export class AppModule { }
