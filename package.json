@@ -31,7 +31,7 @@
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
-    "html-pdf": "^2.2.0",
+    "html-pdf": "^3.0.1",
     "mongoose": "^5.9.18",
     "nodemailer": "^6.4.8",
     "passport": "^0.4.1",
